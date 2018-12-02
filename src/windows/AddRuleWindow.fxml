@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="375.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddRuleController">
+   <children>
+      <Label layoutX="135.0" layoutY="25.0" text="add rule">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="75.0" text="actual state">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="125.0" text="read symbol">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="175.0" text="next state">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="225.0" text="write symbol">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="275.0" text="move tape">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lState" layoutX="200.0" layoutY="75.0" text="&lt;state&gt;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cbReadSymbol" layoutX="200.0" layoutY="125.0" />
+      <ChoiceBox fx:id="cbNextState" layoutX="200.0" layoutY="175.0" />
+      <ChoiceBox fx:id="cbWriteSymbol" layoutX="200.0" layoutY="225.0" />
+      <Button fx:id="bL" layoutX="199.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionL" text="L" />
+      <Button fx:id="bH" layoutX="221.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionH" text="H" />
+      <Button fx:id="bR" layoutX="246.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionR" text="R" />
+      <Button layoutX="93.0" layoutY="325.0" mnemonicParsing="false" onAction="#actionOK" text="OK" />
+      <Button layoutX="220.0" layoutY="325.0" mnemonicParsing="false" onAction="#closeStage" text="cancel" />
+   </children>
+</AnchorPane>
