@@ -184,7 +184,7 @@ public class Turing extends Application {
     public void addRule(String actState, char readSymbol, char writeSymbol, String nextState, AddRuleController.tape tapeMove){
         for (int i = 0; i < states.size(); i++) {
             if (states.get(i).getName().equals(actState)) {
-                mainWindowController.getTableRules().getItems().get(i).
+                //mainWindowController.getTableRules().getItems().get(i).
             }
         }
     }
