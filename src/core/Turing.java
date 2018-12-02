@@ -1,10 +1,8 @@
 package core;
 
-import controllers.AddRuleController;
-import controllers.AddStateController;
-import controllers.EditStateController;
-import controllers.MainWindowController;
+import controllers.*;
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,24 +12,28 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Turing extends Application {
 
-    ArrayList<Character> alph;
-    String name;
-    String initState;
-    String tapeEx;
+    private ArrayList<Character> alph;
+    private String name;
+    private String initState;
+    private String tapeEx;
     private final ObservableList<State> states = FXCollections.observableArrayList(new State("state1"));
-    MainWindowController mainWindowController;
-    AddStateController addStateController;
-    EditStateController editStateController;
-    AddRuleController addRuleController;
+    private MainWindowController mainWindowController;
+    private AddStateController addStateController;
+    private EditStateController editStateController;
+    private AddRuleController addRuleController;
+    private DeleteRuleController deleteRuleController;
 
     //Initial-----------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -60,13 +62,7 @@ public class Turing extends Application {
         initState = "0";
         tapeEx = "";
 
-        TableColumn statesCol = new TableColumn("state");
-        statesCol.setCellValueFactory(new PropertyValueFactory<State, String>("name"));
-        mainWindowController.getTableRules().getColumns().addAll(statesCol);
-
-        TableColumn hashtagCol = new TableColumn("#");
-        hashtagCol.setCellValueFactory(new PropertyValueFactory<State, String>("#"));
-        mainWindowController.getTableRules().getColumns().addAll(hashtagCol);
+        setAlph("");
 
         mainWindowController.getTableRules().setItems(states);
     }
@@ -79,13 +75,23 @@ public class Turing extends Application {
         }
         alph = alphNew;
         alph.add('#');
+        for(int i = 0; i < states.size(); i++){
+            for(int j = 0; j < alph.size(); j++){
+                states.get(i).addAlph(alph.get(j));
+            }
+        }
         mainWindowController.getTableRules().getColumns().clear();
         TableColumn statesCol = new TableColumn("state");
         statesCol.setCellValueFactory(new PropertyValueFactory<State, String>("name"));
         mainWindowController.getTableRules().getColumns().addAll(statesCol);
         for(int i = 0; i < getAlph().size(); i++){
+            final int j = i;
             TableColumn tc = new TableColumn("" + getAlph().get(i));
-            tc.setCellValueFactory(new PropertyValueFactory<State, String>("" + getAlph().get(i)));
+            tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<State,String>,ObservableValue<String>>(){
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<State, String> param) {
+                    return new SimpleStringProperty(param.getValue().mapPropertyProperty().get(getAlph().get(j)));
+                }
+            });
             mainWindowController.getTableRules().getColumns().addAll(tc);
         }
     }
@@ -111,6 +117,9 @@ public class Turing extends Application {
 
     public void addState(String state){
         states.add(new State(state));
+        for(int j = 0; j < alph.size(); j++){
+            states.get(states.size() - 1).addAlph(alph.get(j));
+        }
         mainWindowController.getTableRules().setItems(states);
     }
 
@@ -145,7 +154,7 @@ public class Turing extends Application {
             FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/AddRuleWindow.fxml"));
             AnchorPane pane = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Turing Machine - add rule");
+            stage.setTitle("Turing Machine - add/edit rule");
 
             addRuleController = loader.getController();
             addRuleController.setTuring(this);
@@ -184,9 +193,49 @@ public class Turing extends Application {
     public void addRule(String actState, char readSymbol, char writeSymbol, String nextState, AddRuleController.tape tapeMove){
         for (int i = 0; i < states.size(); i++) {
             if (states.get(i).getName().equals(actState)) {
-                //mainWindowController.getTableRules().getItems().get(i).
+                State state = (State)mainWindowController.getTableRules().getItems().get(i);
+                state.setValue(readSymbol, "" + nextState + " , " + writeSymbol + " , " + tapeMove);
             }
         }
+        GUIUtils.autoResizeColumns(mainWindowController.getTableRules());
+        mainWindowController.getTableRules().refresh();
+    }
+
+    public void deleteRuleBtn(String actualState){
+        try {
+            FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/DeleteRuleWindow.fxml"));
+            AnchorPane pane = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Turing Machine - add/edit rule");
+
+            deleteRuleController = loader.getController();
+            deleteRuleController.setTuring(this);
+            deleteRuleController.setStage(stage);
+            deleteRuleController.setlState(actualState);
+            deleteRuleController.getCbReadSymbol().setItems(FXCollections.observableArrayList(alph));
+            deleteRuleController.getCbReadSymbol().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    deleteRuleController.setReadSymbol(alph.get(newValue.intValue()));
+                }
+            });
+            stage.setScene(new Scene(pane, 250, 220));
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteRule(String actState, char readSymbol){
+        for (int i = 0; i < states.size(); i++) {
+            if (states.get(i).getName().equals(actState)) {
+                State state = (State)mainWindowController.getTableRules().getItems().get(i);
+                state.setValue(readSymbol, "null");
+            }
+        }
+        GUIUtils.autoResizeColumns(mainWindowController.getTableRules());
+        mainWindowController.getTableRules().refresh();
     }
 
     //Getter & Setter---------------------------------------------------------------------------------------------------

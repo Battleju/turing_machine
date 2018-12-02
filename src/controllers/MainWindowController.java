@@ -85,6 +85,12 @@ public class MainWindowController {
         turing.addRuleBtn(item.getName());
     }
 
+    @FXML
+    public void deleteRule(){
+        State item = (State) tableRules.getSelectionModel().getSelectedItem();
+        turing.deleteRuleBtn(item.getName());
+    }
+
     public TableView getTableRules() {
         return tableRules;
     }

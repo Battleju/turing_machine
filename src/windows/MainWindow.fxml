@@ -46,8 +46,7 @@
       <Button fx:id="bAddState" layoutX="500.0" layoutY="525.0" mnemonicParsing="false" onAction="#addState" text="add state" />
       <Button fx:id="bEditState" layoutX="642.0" layoutY="525.0" mnemonicParsing="false" onAction="#editState" text="edit state" />
       <Button layoutX="772.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteState" text="delete state" />
-      <Button layoutX="500.0" layoutY="561.0" mnemonicParsing="false" onAction="#addRule" text="add rule" />
-      <Button layoutX="645.0" layoutY="561.0" mnemonicParsing="false" text="edit rule" />
-      <Button layoutX="777.0" layoutY="561.0" mnemonicParsing="false" text="delete rule" />
+      <Button layoutX="500.0" layoutY="561.0" mnemonicParsing="false" onAction="#addRule" text="add/edit rule" />
+      <Button layoutX="777.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteRule" text="delete rule" />
    </children>
 </AnchorPane>
