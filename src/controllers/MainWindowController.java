@@ -3,9 +3,11 @@ package controllers;
 import core.State;
 import core.Turing;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class MainWindowController {
 
@@ -27,6 +29,8 @@ public class MainWindowController {
 
     //other
     @FXML private TableView tableRules;
+    @FXML private ChoiceBox cbInitState;
+    @FXML private AnchorPane pane;
 
     public void setTuring(Turing turing){
         this.turing = turing;
@@ -34,7 +38,7 @@ public class MainWindowController {
 
     @FXML
     public void handleRun(){
-
+        turing.startRunScene();
     }
 
     @FXML
@@ -91,8 +95,30 @@ public class MainWindowController {
         turing.deleteRuleBtn(item.getName());
     }
 
+    @FXML
+    public void handleClose(){
+        System.exit(0);
+    }
+
+    @FXML
+    public void handleMax(){
+
+    }
+
+    @FXML
+    public void handleMin(){
+
+    }
+
     public TableView getTableRules() {
         return tableRules;
     }
 
+    public ChoiceBox getCbInitState() {
+        return cbInitState;
+    }
+
+    public AnchorPane getPane() {
+        return pane;
+    }
 }

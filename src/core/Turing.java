@@ -7,20 +7,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Turing extends Application {
 
@@ -34,6 +33,10 @@ public class Turing extends Application {
     private EditStateController editStateController;
     private AddRuleController addRuleController;
     private DeleteRuleController deleteRuleController;
+    private Stage primaryStage;
+    private AnchorPane pane;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     //Initial-----------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -42,14 +45,31 @@ public class Turing extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/MainWindow.fxml"));
-        AnchorPane pane = loader.load();
+        pane = loader.load();
         primaryStage.setTitle("Turing Machine");
 
         mainWindowController = loader.getController();
         mainWindowController.setTuring(this);
 
+        mainWindowController.getPane().setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        mainWindowController.getPane().setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+
         primaryStage.setScene(new Scene(pane, 900, 600));
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
         initTuring();
@@ -58,16 +78,44 @@ public class Turing extends Application {
     private void initTuring(){
         alph = new ArrayList<Character>();
         alph.add('#');
-        name = "name";
-        initState = "0";
-        tapeEx = "";
+        name = "noname";
+        initState = "";
+        tapeEx = "#";
 
         setAlph("");
 
         mainWindowController.getTableRules().setItems(states);
+        mainWindowController.getCbInitState().setItems(FXCollections.observableArrayList(states));
+        mainWindowController.getCbInitState().getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                try{
+                    initState = states.get(newValue.intValue()).getName();
+                }catch (ArrayIndexOutOfBoundsException ex){
+
+                }
+
+            }
+        });
     }
 
     //Edit Table--------------------------------------------------------------------------------------------------------
+    public void refreshCBInitState(){
+        mainWindowController.getCbInitState().getItems().clear();
+        for (int i = 0; i < states.size(); i++){
+            mainWindowController.getCbInitState().getItems().add(states.get(i));
+        }
+        State selectedState = null;
+        for (int i = 0; i < states.size(); i++){
+            if(states.get(i).getName().equals(initState)){
+                selectedState = states.get(i);
+            }
+        }
+        if(selectedState != null){
+            mainWindowController.getCbInitState().getSelectionModel().select(selectedState);
+        }
+    }
+
     public void setAlph(String alphString){
         ArrayList<Character> alphNew = new ArrayList<Character>();
         for (char c : alphString.toCharArray()) {
@@ -121,6 +169,7 @@ public class Turing extends Application {
             states.get(states.size() - 1).addAlph(alph.get(j));
         }
         mainWindowController.getTableRules().setItems(states);
+        refreshCBInitState();
     }
 
     public void editStateBtn(){
@@ -147,6 +196,7 @@ public class Turing extends Application {
         if(item != null) {
             item.setName(state);
         }
+        refreshCBInitState();
     }
 
     public void addRuleBtn(String actualState){
@@ -238,6 +288,16 @@ public class Turing extends Application {
         mainWindowController.getTableRules().refresh();
     }
 
+    //Run Stage---------------------------------------------------------------------------------------------------------
+    public void startRunScene(){
+        try {
+            RunScene runScene = new RunScene(this, pane, name, alph, initState, tapeEx, mainWindowController.getTableRules());
+            primaryStage.getScene().setRoot(runScene.getPane());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     //Getter & Setter---------------------------------------------------------------------------------------------------
 
     public void setName(String name){
@@ -268,5 +328,27 @@ public class Turing extends Application {
         return tapeEx;
     }
 
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 
+    public ObservableList<State> getStates() {
+        return states;
+    }
+
+    public double getxOffset() {
+        return xOffset;
+    }
+
+    public void setxOffset(double xOffset) {
+        this.xOffset = xOffset;
+    }
+
+    public double getyOffset() {
+        return yOffset;
+    }
+
+    public void setyOffset(double yOffset) {
+        this.yOffset = yOffset;
+    }
 }

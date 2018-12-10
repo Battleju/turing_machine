@@ -10,7 +10,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <children>
       <Label fx:id="lName" alignment="CENTER" layoutX="50.0" layoutY="150.0" text="name:">
          <font>
@@ -34,19 +34,37 @@
          </font>
       </Label>
       <TextField fx:id="tfAlph" layoutX="200.0" layoutY="200.0" onAction="#setValueAlph" />
-      <TextField fx:id="tfInitState" layoutX="200.0" layoutY="250.0" onAction="#setValueInitState" />
       <TextField fx:id="tfTapeEx" layoutX="200.0" layoutY="300.0" onAction="#setValueTapeEx" />
       <Label fx:id="lHeading" layoutX="50.0" layoutY="45.0" text="Turing Machine Simulator">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <Button fx:id="bRun" layoutX="50.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleRun" text="Run" />
+      <Button fx:id="bRun" layoutX="20.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleRun" text="Run" textFill="#006b02">
+         <font>
+            <Font name="System Bold Italic" size="32.0" />
+         </font></Button>
       <TableView fx:id="tableRules" layoutX="500.0" layoutY="50.0" prefHeight="450.0" prefWidth="350.0" />
-      <Button fx:id="bAddState" layoutX="500.0" layoutY="525.0" mnemonicParsing="false" onAction="#addState" text="add state" />
-      <Button fx:id="bEditState" layoutX="642.0" layoutY="525.0" mnemonicParsing="false" onAction="#editState" text="edit state" />
-      <Button layoutX="772.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteState" text="delete state" />
-      <Button layoutX="500.0" layoutY="561.0" mnemonicParsing="false" onAction="#addRule" text="add/edit rule" />
-      <Button layoutX="777.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteRule" text="delete rule" />
+      <Button fx:id="bAddState" layoutX="500.0" layoutY="525.0" mnemonicParsing="false" onAction="#addState" prefWidth="100.0" text="add state" />
+      <Button fx:id="bEditState" layoutX="625.0" layoutY="525.0" mnemonicParsing="false" onAction="#editState" prefWidth="100.0" text="edit state" />
+      <Button layoutX="750.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="100.0" text="delete state" />
+      <Button layoutX="500.0" layoutY="565.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" text="add/edit rule" />
+      <Button layoutX="700.0" layoutY="565.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" text="delete rule" />
+      <ChoiceBox fx:id="cbInitState" layoutX="200.0" layoutY="250.0" prefWidth="150.0" />
+      <Button layoutX="866.0" layoutY="14.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#handleClose" prefHeight="20.0" prefWidth="20.0" text="X">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button layoutX="830.0" layoutY="14.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#handleMax" prefHeight="20.0" prefWidth="20.0" text="-">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+      <Button layoutX="790.0" layoutY="14.0" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#handleMin" prefHeight="20.0" prefWidth="20.0" text="_">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
