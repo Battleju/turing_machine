@@ -34,7 +34,7 @@
          </font>
       </Label>
       <TextField fx:id="tfAlph" layoutX="200.0" layoutY="200.0" onAction="#setValueAlph" onKeyReleased="#setValueAlph" />
-      <TextField fx:id="tfTapeEx" layoutX="200.0" layoutY="300.0" />
+      <TextField fx:id="tfTapeEx" layoutX="200.0" layoutY="300.0" onKeyReleased="#checkText" />
       <Label fx:id="lHeading" layoutX="50.0" layoutY="45.0" text="Turing Machine Simulator">
          <font>
             <Font size="32.0" />

@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class RunController {
+    public class RunController {
 
     private RunScene runScene;
 
@@ -35,11 +35,13 @@ public class RunController {
     @FXML private TableView tableRules;
     @FXML private Slider slSpeed;
 
-    @FXML public void actionStartPause(){
+    @FXML
+    public void actionStartPause(){
         runScene.actionStartPause();
     }
 
-    @FXML public void goBack(){
+    @FXML
+    public void goBack(){
         runScene.goToOrigin();
     }
 
@@ -48,25 +50,22 @@ public class RunController {
         runScene.setSpeed(slSpeed.getValue());
     }
 
-
-
-    @FXML public void reset(){
+    @FXML
+    public void reset(){
         runScene.reset();
     }
 
     public void setlFinished(String text){
-        Platform.runLater(new Runnable() {
-            @Override public void run() {
-                lFinished.setText(text);
-            }
-        });
+        Platform.runLater(() -> lFinished.setText(text));
     }
 
-    @FXML public void nextStep(){
-        runScene.getMachine().runOneTime();
+    @FXML
+    public void nextStep(){
+        runScene.getMachine().runAlgorithm();
     }
 
-    @FXML public void nextState(){
+    @FXML
+    public void nextState(){
         runScene.actionStartPause();
         runScene.setJustUntilNextState(true);
     }

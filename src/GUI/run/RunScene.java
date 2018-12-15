@@ -1,17 +1,14 @@
 package GUI.run;
 
-import GUI.run.RunController;
 import core.Machine;
+import core.MainScene;
 import core.State;
 import core.Tape;
-import core.MainScene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-
-import java.util.ArrayList;
 
 public class RunScene {
 
@@ -22,18 +19,16 @@ public class RunScene {
     private MainScene turing;
     private int running = 0;
     private Machine machine;
-    private ArrayList<Character> alph;
     private String tapeEx;
     private String initState;
     private boolean justUntilNextState;
     private int movedDelta;
-    public enum Direction{LEFT, RIGHT};
+    public enum Direction{LEFT, RIGHT}
     private TableView rules;
 
-    public RunScene(MainScene turing, AnchorPane origin, String name, ArrayList<Character> alph, String initState, String tapeEx, TableView rules)throws Exception{
+    public RunScene(MainScene turing, AnchorPane origin, String name, String initState, String tapeEx, TableView rules)throws Exception{
         this.origin = origin;
         this.turing = turing;
-        this.alph = alph;
         this.tapeEx = tapeEx;
         this.initState = initState;
         this.rules = rules;
@@ -49,7 +44,7 @@ public class RunScene {
             runController.setTableRulesCol((TableColumn) rules.getColumns().get(i));
         }
         runController.setTableRulesRow(rules.getItems());
-        machine = new Machine(this, alph, initState, tapeEx, turing.getStates());
+        machine = new Machine(this, initState, tapeEx, turing.getStates());
 
         runController.getTableRules().setRowFactory(tv -> new TableRow<State>() {
             @Override
@@ -83,32 +78,20 @@ public class RunScene {
         runController.getTableRules().refresh();
     }
 
-    public void actionStartPause(){
+    void actionStartPause(){
         switch (running){
             case 0:
-                runStart();
+                machine.start();
+                running = 2;
                 break;
             case 1:
-                runResume();
+                machine.resume();
+                running = 2;
                 break;
             case 2:
-                runPause();
+                machine.suspend();
+                running = 1;
         }
-    }
-
-    public void runStart(){
-        machine.start();
-        running = 2;
-    }
-
-    public void runResume(){
-        machine.resume();
-        running = 2;
-    }
-
-    public void runPause(){
-        machine.suspend();
-        running = 1;
     }
 
     public void render(Tape tape, int pointer, Direction dir){
@@ -131,7 +114,7 @@ public class RunScene {
         }
     }
 
-    public void goToOrigin(){
+    void goToOrigin(){
         machine.stop();
         turing.getPrimaryStage().getScene().setRoot(origin);
     }
@@ -140,13 +123,13 @@ public class RunScene {
         return pane;
     }
 
-    public void reset(){
+    void reset(){
         machine.stop();
         running = 0;
         speed = 0.5;
         movedDelta = 0;
         runController.setlFinished("");
-        machine = new Machine(this, alph, initState, tapeEx, turing.getStates());
+        machine = new Machine(this, initState, tapeEx, turing.getStates());
     }
 
     public void finished(){
@@ -155,7 +138,7 @@ public class RunScene {
         machine.stop();
     }
 
-    public void setSpeed(double slValue){
+    void setSpeed(double slValue){
             speed = slValue/100;
     }
 
@@ -163,7 +146,7 @@ public class RunScene {
         return speed;
     }
 
-    public Machine getMachine() {
+    Machine getMachine() {
         return machine;
     }
 

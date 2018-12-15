@@ -19,6 +19,20 @@ public class DeleteRuleController {
     //ChoiseBoxes
     @FXML private ChoiceBox cbReadSymbol;
 
+
+
+
+    @FXML
+    public void actionOK(){
+        turing.deleteRule(lState.getText(),readSymbol);
+        stage.close();
+    }
+
+    @FXML
+    public void closeState(){
+        stage.close();
+    }
+
     public void setlState(String lStateName){
         lState.setText(lStateName);
     }
@@ -33,23 +47,5 @@ public class DeleteRuleController {
     }
     public void setReadSymbol(char readSymbol) {
         this.readSymbol = readSymbol;
-    }
-
-
-
-    @FXML
-    public void closeStage(){
-        stage.close();
-    }
-
-    @FXML
-    public void actionOK(){
-        turing.deleteRule(lState.getText(),readSymbol);
-        stage.close();
-    }
-
-    @FXML
-    public void closeState(){
-        stage.close();
     }
 }

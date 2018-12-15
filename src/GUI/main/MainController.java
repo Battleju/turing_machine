@@ -1,15 +1,14 @@
 package GUI.main;
 
-import core.State;
 import core.MainScene;
+import core.State;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
+import utils.Utils;
 
 public class MainController {
 
@@ -20,7 +19,6 @@ public class MainController {
     @FXML private Label lAlph;
     @FXML private Label lInitState;
     @FXML private Label lTapeEx;
-    @FXML private Label lHeading;
 
     //TextFields
     @FXML private TextField tfName;
@@ -39,18 +37,6 @@ public class MainController {
     @FXML
     public void handleRun(){
         turing.startRunScene();
-    }
-
-    public String getValueName(){
-        return tfName.getText();
-    }
-
-    public String getValueAlph(){
-        return tfAlph.getText();
-    }
-
-    public String getValueTapeEx(){
-        return tfTapeEx.getText();
     }
 
     @FXML
@@ -89,6 +75,15 @@ public class MainController {
     }
 
     @FXML
+    public void checkText(){
+        if(Utils.StringWhitelist(turing.getAlph(), tfTapeEx.getText())){
+            tfTapeEx.setStyle("");
+        }else {
+            tfTapeEx.setStyle("-fx-text-inner-color: red");
+        }
+    }
+
+    @FXML
     public void handleClose(){
         System.exit(0);
     }
@@ -124,5 +119,17 @@ public class MainController {
 
     public Label getlTapeEx() {
         return lTapeEx;
+    }
+
+    public String getValueName(){
+        return tfName.getText();
+    }
+
+    public String getValueAlph(){
+        return tfAlph.getText();
+    }
+
+    public String getValueTapeEx(){
+        return tfTapeEx.getText();
     }
 }

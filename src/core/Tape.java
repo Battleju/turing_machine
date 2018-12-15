@@ -9,7 +9,7 @@ public class Tape {
     private char[] posSpace;
     private char[] negSpace;
 
-    public Tape(String tapeEx) {
+    Tape(String tapeEx) {
         posSpace = new char[3];
         negSpace = new char[3];
         center = '#';
@@ -19,7 +19,7 @@ public class Tape {
             negSpace[i] = '#';
         }
 
-        ArrayList<Character> tapeExChar = new ArrayList<Character>();
+        ArrayList<Character> tapeExChar = new ArrayList<>();
         for (char c : tapeEx.toCharArray()) {
             tapeExChar.add(c);
         }
@@ -48,7 +48,7 @@ public class Tape {
         }
     }
 
-    public void setValue(int pos, char value){
+    void setValue(int pos, char value){
         if(pos == 0){
             center = value;
         }else if(pos > 0){
@@ -71,9 +71,7 @@ public class Tape {
     private void extend(int setting){
         if(setting == 1){
             char[] temp = new char[posSpace.length];
-            for (int i = 0; i < posSpace.length; i++){
-                temp[i] = posSpace[i];
-            }
+            System.arraycopy(posSpace, 0, temp, 0, posSpace.length);
             posSpace = new char[temp.length + 1];
             for (int i = 0; i < posSpace.length; i++){
                 try{
@@ -84,9 +82,7 @@ public class Tape {
             }
         }else if(setting == -1){
             char[] temp = new char[negSpace.length];
-            for (int i = 0; i < negSpace.length; i++){
-                temp[i] = negSpace[i];
-            }
+            System.arraycopy(negSpace, 0, temp, 0, negSpace.length);
             negSpace = new char[temp.length + 1];
             for (int i = 0; i < negSpace.length; i++){
                 try{

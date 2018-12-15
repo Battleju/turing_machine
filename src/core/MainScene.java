@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import utils.GUIUtils;
+import utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,8 +33,6 @@ public class MainScene extends Application {
     private String tapeEx;
     private final ObservableList<State> states = FXCollections.observableArrayList(new State("state1"));
     private MainController mainWindowController;
-    private AddStateController addStateController;
-    private EditStateController editStateController;
     private AddRuleController addRuleController;
     private DeleteRuleController deleteRuleController;
     private Stage primaryStage;
@@ -81,7 +80,7 @@ public class MainScene extends Application {
     }
 
     private void initTuring(){
-        alph = new ArrayList<Character>();
+        alph = new ArrayList<>();
         alph.add('#');
         name = "noname";
         initState = "";
@@ -95,7 +94,7 @@ public class MainScene extends Application {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 try{
                     initState = states.get(newValue.intValue()).getName();
-                }catch (ArrayIndexOutOfBoundsException ex){
+                }catch (ArrayIndexOutOfBoundsException ignored){
 
                 }
 
@@ -104,15 +103,15 @@ public class MainScene extends Application {
     }
 
     //Edit Table--------------------------------------------------------------------------------------------------------
-    public void refreshCBInitState(){
+    private void refreshCBInitState(){
         mainWindowController.getCbInitState().getItems().clear();
-        for (int i = 0; i < states.size(); i++){
-            mainWindowController.getCbInitState().getItems().add(states.get(i));
+        for (State state : states) {
+            mainWindowController.getCbInitState().getItems().add(state);
         }
         State selectedState = null;
-        for (int i = 0; i < states.size(); i++){
-            if(states.get(i).getName().equals(initState)){
-                selectedState = states.get(i);
+        for (State state : states) {
+            if (state.getName().equals(initState)) {
+                selectedState = state;
             }
         }
         if(selectedState != null){
@@ -127,9 +126,9 @@ public class MainScene extends Application {
         }
         alph = alphNew;
         alph.add('#');
-        for(int i = 0; i < states.size(); i++){
-            for(int j = 0; j < alph.size(); j++){
-                states.get(i).addAlph(alph.get(j));
+        for (State state : states) {
+            for (Character character : alph) {
+                state.addAlph(character);
             }
         }
         mainWindowController.getTableRules().getColumns().clear();
@@ -155,7 +154,7 @@ public class MainScene extends Application {
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add state");
 
-            addStateController = loader.getController();
+            AddStateController addStateController = loader.getController();
             addStateController.setTuring(this);
             addStateController.setStage(stage);
 
@@ -169,8 +168,8 @@ public class MainScene extends Application {
 
     public void addState(String state){
         states.add(new State(state));
-        for(int j = 0; j < alph.size(); j++){
-            states.get(states.size() - 1).addAlph(alph.get(j));
+        for (Character character : alph) {
+            states.get(states.size() - 1).addAlph(character);
         }
         mainWindowController.getTableRules().setItems(states);
         refreshCBInitState();
@@ -183,7 +182,7 @@ public class MainScene extends Application {
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - edit state");
 
-            editStateController = loader.getController();
+            EditStateController editStateController = loader.getController();
             editStateController.setTuring(this);
             editStateController.setStage(stage);
 
@@ -298,8 +297,10 @@ public class MainScene extends Application {
             name = mainWindowController.getValueName();
             setAlph(mainWindowController.getValueAlph());
             tapeEx = mainWindowController.getValueTapeEx();
-            RunScene runScene = new RunScene(this, pane, name, alph, initState, tapeEx, mainWindowController.getTableRules());
-            primaryStage.getScene().setRoot(runScene.getPane());
+            if(Utils.StringWhitelist(alph, tapeEx)){
+                RunScene runScene = new RunScene(this, pane, name, initState, tapeEx, mainWindowController.getTableRules());
+                primaryStage.getScene().setRoot(runScene.getPane());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

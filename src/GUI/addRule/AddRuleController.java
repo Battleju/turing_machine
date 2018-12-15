@@ -1,23 +1,16 @@
 package GUI.addRule;
 
 import core.MainScene;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddRuleController {
 
     private MainScene turing;
     private Stage stage;
-
-    public enum tape {
-        L, H, R
-    }
     private tape tapeMovement;
     private char writeSymbol;
     private char readSymbol;
@@ -36,40 +29,8 @@ public class AddRuleController {
     @FXML private ChoiceBox cbNextState;
     @FXML private ChoiceBox cbWriteSymbol;
 
-    public void setlState(String lStateName){
-        lState.setText(lStateName);
-    }
-
-    public void setTuring(MainScene turing) {
-        this.turing = turing;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public ChoiceBox getCbReadSymbol() {
-        return cbReadSymbol;
-    }
-
-    public ChoiceBox getCbNextState() {
-        return cbNextState;
-    }
-
-    public ChoiceBox getCbWriteSymbol() {
-        return cbWriteSymbol;
-    }
-
-    public void setWriteSymbol(char writeSymbol) {
-        this.writeSymbol = writeSymbol;
-    }
-
-    public void setReadSymbol(char readSymbol) {
-        this.readSymbol = readSymbol;
-    }
-
-    public void setNextState(String nextState) {
-        this.nextState = nextState;
+    public enum tape {
+        L, H, R
     }
 
     @FXML
@@ -105,5 +66,41 @@ public class AddRuleController {
         bH.setStyle(null);
         bL.setStyle(null);
         tapeMovement = tape.R;
+    }
+
+    public void setlState(String lStateName){
+        lState.setText(lStateName);
+    }
+
+    public void setTuring(MainScene turing) {
+        this.turing = turing;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public ChoiceBox getCbReadSymbol() {
+        return cbReadSymbol;
+    }
+
+    public ChoiceBox getCbNextState() {
+        return cbNextState;
+    }
+
+    public ChoiceBox getCbWriteSymbol() {
+        return cbWriteSymbol;
+    }
+
+    public void setWriteSymbol(char writeSymbol) {
+        this.writeSymbol = writeSymbol;
+    }
+
+    public void setReadSymbol(char readSymbol) {
+        this.readSymbol = readSymbol;
+    }
+
+    public void setNextState(String nextState) {
+        this.nextState = nextState;
     }
 }

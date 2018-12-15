@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 public class AddStateController {
 
     private MainScene turing;
