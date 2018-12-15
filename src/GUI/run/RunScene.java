@@ -1,14 +1,16 @@
-package core;
+package GUI.run;
 
-import controllers.RunController;
+import GUI.run.RunController;
+import core.Machine;
+import core.State;
+import core.Tape;
+import core.MainScene;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class RunScene {
@@ -17,7 +19,7 @@ public class RunScene {
     private RunController runController;
     private double speed;
     private AnchorPane origin;
-    private Turing turing;
+    private MainScene turing;
     private int running = 0;
     private Machine machine;
     private ArrayList<Character> alph;
@@ -26,17 +28,19 @@ public class RunScene {
     private boolean justUntilNextState;
     private int movedDelta;
     public enum Direction{LEFT, RIGHT};
+    private TableView rules;
 
-    public RunScene(Turing turing, AnchorPane origin, String name, ArrayList<Character> alph, String initState, String tapeEx, TableView rules)throws Exception{
+    public RunScene(MainScene turing, AnchorPane origin, String name, ArrayList<Character> alph, String initState, String tapeEx, TableView rules)throws Exception{
         this.origin = origin;
         this.turing = turing;
         this.alph = alph;
         this.tapeEx = tapeEx;
         this.initState = initState;
+        this.rules = rules;
         justUntilNextState = false;
         speed = 0.5;
         movedDelta = 0;
-        FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/RunWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/run/RunWindow.fxml"));
         pane = loader.load();
         runController = loader.getController();
         runController.setlName(name);
@@ -46,6 +50,37 @@ public class RunScene {
         }
         runController.setTableRulesRow(rules.getItems());
         machine = new Machine(this, alph, initState, tapeEx, turing.getStates());
+
+        runController.getTableRules().setRowFactory(tv -> new TableRow<State>() {
+            @Override
+            public void updateItem(State item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (item == null) {
+                    setStyle("");
+                    System.out.println("no item");
+                } else if (item.isActive()) {
+                    setStyle("-fx-background-color: #2c84ff;");
+                    System.out.println("found item");
+                } else {
+                    setStyle("");
+                    System.out.println("item isnt active");
+                }
+            }
+        });
+    }
+
+    public void setFocusOnTable(State actState){
+        for (int i = 0; i < rules.getItems().size(); i++){
+            State state = (State)rules.getItems().get(i);
+            state.setActive(false);
+        }
+        for (int i = 0; i < rules.getItems().size(); i++){
+            State state = (State)rules.getItems().get(i);
+            if(state.getName().trim().equals(actState.getName().trim())){
+                state.setActive(true);
+            }
+        }
+        runController.getTableRules().refresh();
     }
 
     public void actionStartPause(){

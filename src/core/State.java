@@ -12,6 +12,7 @@ public class State {
 
     private final SimpleStringProperty name;
     private final SimpleMapProperty<Character, String> mapProperty;
+    private boolean active = false;
 
     public State(String name) {
         this.name = new SimpleStringProperty(name);
@@ -54,5 +55,13 @@ public class State {
 
     public void setMapProperty(ObservableMap<Character, String> mapProperty) {
         this.mapProperty.set(mapProperty);
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

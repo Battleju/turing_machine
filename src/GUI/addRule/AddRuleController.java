@@ -1,6 +1,6 @@
-package controllers;
+package GUI.addRule;
 
-import core.Turing;
+import core.MainScene;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class AddRuleController {
 
-    private Turing turing;
+    private MainScene turing;
     private Stage stage;
 
     public enum tape {
@@ -40,7 +40,7 @@ public class AddRuleController {
         lState.setText(lStateName);
     }
 
-    public void setTuring(Turing turing) {
+    public void setTuring(MainScene turing) {
         this.turing = turing;
     }
 

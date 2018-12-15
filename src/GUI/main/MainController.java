@@ -1,17 +1,19 @@
-package controllers;
+package GUI.main;
 
 import core.State;
-import core.Turing;
+import core.MainScene;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
-public class MainWindowController {
+public class MainController {
 
-    private Turing turing;
+    private MainScene turing;
 
     //Labels
     @FXML private Label lName;
@@ -23,16 +25,14 @@ public class MainWindowController {
     //TextFields
     @FXML private TextField tfName;
     @FXML private TextField tfAlph;
-    @FXML private TextField tfInitState;
     @FXML private TextField tfTapeEx;
-    @FXML private TextField tfAddState;
 
     //other
     @FXML private TableView tableRules;
     @FXML private ChoiceBox cbInitState;
     @FXML private AnchorPane pane;
 
-    public void setTuring(Turing turing){
+    public void setTuring(MainScene turing){
         this.turing = turing;
     }
 
@@ -41,28 +41,21 @@ public class MainWindowController {
         turing.startRunScene();
     }
 
-    @FXML
-    public void setValueName(){
-        tfName.setStyle("-fx-text-fill: green");
-        turing.setName(tfName.getText());
+    public String getValueName(){
+        return tfName.getText();
+    }
+
+    public String getValueAlph(){
+        return tfAlph.getText();
+    }
+
+    public String getValueTapeEx(){
+        return tfTapeEx.getText();
     }
 
     @FXML
     public void setValueAlph(){
-        tfAlph.setStyle("-fx-text-fill: green");
         turing.setAlph(tfAlph.getText());
-    }
-
-    @FXML
-    public void setValueInitState(){
-        tfInitState.setStyle("-fx-text-fill: green");
-        turing.setInitState(tfInitState.getText());
-    }
-
-    @FXML
-    public void setValueTapeEx(){
-        tfTapeEx.setStyle("-fx-text-fill: green");
-        turing.setTapeEx(tfTapeEx.getText());
     }
 
     @FXML
@@ -101,11 +94,6 @@ public class MainWindowController {
     }
 
     @FXML
-    public void handleMax(){
-
-    }
-
-    @FXML
     public void handleMin(){
 
     }
@@ -120,5 +108,21 @@ public class MainWindowController {
 
     public AnchorPane getPane() {
         return pane;
+    }
+
+    public Label getlName() {
+        return lName;
+    }
+
+    public Label getlAlph() {
+        return lAlph;
+    }
+
+    public Label getlInitState() {
+        return lInitState;
+    }
+
+    public Label getlTapeEx() {
+        return lTapeEx;
     }
 }

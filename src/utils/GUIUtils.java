@@ -1,4 +1,4 @@
-package core;
+package utils;
 
 import com.sun.javafx.scene.control.skin.TableViewSkin;
 import javafx.collections.ListChangeListener;

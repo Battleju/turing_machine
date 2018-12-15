@@ -1,6 +1,5 @@
-package controllers;
+package GUI.run;
 
-import core.RunScene;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -208,5 +207,9 @@ public class RunController {
 
     public void setTableRulesRow(ObservableList row){
         tableRules.setItems(row);
+    }
+
+    public TableView getTableRules() {
+        return tableRules;
     }
 }

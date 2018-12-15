@@ -1,34 +1,37 @@
 package core;
 
-import controllers.*;
+import GUI.addRule.AddRuleController;
+import GUI.addState.AddStateController;
+import GUI.deleteRule.DeleteRuleController;
+import GUI.editState.EditStateController;
+import GUI.main.MainController;
+import GUI.run.RunScene;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import utils.GUIUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Turing extends Application {
+public class MainScene extends Application {
 
     private ArrayList<Character> alph;
     private String name;
     private String initState;
     private String tapeEx;
     private final ObservableList<State> states = FXCollections.observableArrayList(new State("state1"));
-    private MainWindowController mainWindowController;
+    private MainController mainWindowController;
     private AddStateController addStateController;
     private EditStateController editStateController;
     private AddRuleController addRuleController;
@@ -46,13 +49,14 @@ public class Turing extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/main/MainWindow.fxml"));
         pane = loader.load();
         primaryStage.setTitle("Turing Machine");
 
         mainWindowController = loader.getController();
         mainWindowController.setTuring(this);
 
+        /*
         mainWindowController.getPane().setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -67,9 +71,10 @@ public class Turing extends Application {
                 primaryStage.setY(event.getScreenY() - yOffset);
             }
         });
+        */
 
         primaryStage.setScene(new Scene(pane, 900, 600));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
 
         initTuring();
@@ -81,7 +86,6 @@ public class Turing extends Application {
         name = "noname";
         initState = "";
         tapeEx = "#";
-
         setAlph("");
 
         mainWindowController.getTableRules().setItems(states);
@@ -146,7 +150,7 @@ public class Turing extends Application {
 
     public void addStateBtn(){
         try {
-            FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/AddStateWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/addState/AddStateWindow.fxml"));
             AnchorPane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add state");
@@ -174,7 +178,7 @@ public class Turing extends Application {
 
     public void editStateBtn(){
         try {
-            FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/EditStateWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/editState/EditStateWindow.fxml"));
             AnchorPane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - edit state");
@@ -201,7 +205,7 @@ public class Turing extends Application {
 
     public void addRuleBtn(String actualState){
         try {
-            FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/AddRuleWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/addRule/AddRuleWindow.fxml"));
             AnchorPane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add/edit rule");
@@ -253,7 +257,7 @@ public class Turing extends Application {
 
     public void deleteRuleBtn(String actualState){
         try {
-            FXMLLoader loader = new FXMLLoader(Turing.class.getResource("../windows/DeleteRuleWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/deleteRule/DeleteRuleWindow.fxml"));
             AnchorPane pane = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add/edit rule");
@@ -291,6 +295,9 @@ public class Turing extends Application {
     //Run Stage---------------------------------------------------------------------------------------------------------
     public void startRunScene(){
         try {
+            name = mainWindowController.getValueName();
+            setAlph(mainWindowController.getValueAlph());
+            tapeEx = mainWindowController.getValueTapeEx();
             RunScene runScene = new RunScene(this, pane, name, alph, initState, tapeEx, mainWindowController.getTableRules());
             primaryStage.getScene().setRoot(runScene.getPane());
         } catch (Exception e) {

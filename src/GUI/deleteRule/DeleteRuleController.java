@@ -1,6 +1,6 @@
-package controllers;
+package GUI.deleteRule;
 
-import core.Turing;
+import core.MainScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class DeleteRuleController {
 
-    private Turing turing;
+    private MainScene turing;
     private Stage stage;
     private char readSymbol;
 
@@ -22,7 +22,7 @@ public class DeleteRuleController {
     public void setlState(String lStateName){
         lState.setText(lStateName);
     }
-    public void setTuring(Turing turing) {
+    public void setTuring(MainScene turing) {
         this.turing = turing;
     }
     public void setStage(Stage stage) {

@@ -1,7 +1,7 @@
 package core;
 
+import GUI.run.RunScene;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +50,7 @@ public class Machine extends Thread{
                         }
                         if(states.get(i).getName().equals(ruleSplitted.get(0).trim())){
                             actState = states.get(i);
+                            runScene.setFocusOnTable(actState);
                         }
                     }
 

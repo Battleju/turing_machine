@@ -1,21 +1,19 @@
-package controllers;
+package GUI.editState;
 
-import core.Turing;
+import core.MainScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.*;
+public class EditStateController {
 
-public class AddStateController {
-
-    private Turing turing;
+    private MainScene turing;
     private Stage stage;
 
     //TextFields
     @FXML private TextField tfName;
 
-    public void setTuring(Turing turing) {
+    public void setTuring(MainScene turing) {
         this.turing = turing;
     }
 
@@ -30,7 +28,7 @@ public class AddStateController {
 
     @FXML
     public void actionOK(){
-        turing.addState(tfName.getText());
+        turing.editState(tfName.getText());
         stage.close();
     }
 }

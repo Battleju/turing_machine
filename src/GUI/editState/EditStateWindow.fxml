@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="150.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddStateController">
+<AnchorPane prefHeight="150.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.editState.EditStateController">
    <children>
-      <Label layoutX="106.0" layoutY="14.0" text="add new state">
+      <Label layoutX="130.0" layoutY="14.0" text="edit state">
          <font>
             <Font size="22.0" />
          </font>
@@ -19,7 +19,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="tfName" layoutX="125.0" layoutY="63.0" onAction="#actionOK" prefWidth="200.0" />
+      <TextField fx:id="tfName" layoutX="125.0" layoutY="63.0" prefWidth="200.0" />
       <Button fx:id="bOK" layoutX="125.0" layoutY="109.0" mnemonicParsing="false" onAction="#actionOK" text="OK" />
       <Button fx:id="bCancel" layoutX="175.0" layoutY="109.0" mnemonicParsing="false" onAction="#closeStage" text="cancel" />
    </children>
