@@ -3,10 +3,7 @@ package GUI.main;
 import core.MainScene;
 import core.State;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import utils.Utils;
 
@@ -15,82 +12,118 @@ public class MainController {
     private MainScene turing;
 
     //Labels
-    @FXML private Label lName;
-    @FXML private Label lAlph;
-    @FXML private Label lInitState;
-    @FXML private Label lTapeEx;
+    @FXML
+    private Label lName;
+    @FXML
+    private Label lAlph;
+    @FXML
+    private Label lInitState;
+    @FXML
+    private Label lTapeEx;
 
     //TextFields
-    @FXML private TextField tfName;
-    @FXML private TextField tfAlph;
-    @FXML private TextField tfTapeEx;
+    @FXML
+    private TextField tfName;
+    @FXML
+    private TextField tfAlph;
+    @FXML
+    private TextField tfTapeEx;
+
+    //TableViews
+    @FXML
+    private TableView tableRules;
+    @FXML
+    private TableView tableProjects;
 
     //other
-    @FXML private TableView tableRules;
-    @FXML private ChoiceBox cbInitState;
-    @FXML private AnchorPane pane;
+    @FXML
+    private ChoiceBox cbInitState;
+    @FXML
+    private AnchorPane pane;
 
-    public void setTuring(MainScene turing){
+    public void setTuring(MainScene turing) {
         this.turing = turing;
     }
 
     @FXML
-    public void handleRun(){
+    public void handleRun() {
         turing.startRunScene();
     }
 
     @FXML
-    public void setValueAlph(){
+    public void setValueAlph() {
         turing.setAlph(tfAlph.getText());
     }
 
     @FXML
-    public void addState(){
+    public void addState() {
         turing.addStateBtn();
     }
 
     @FXML
-    public void editState(){
+    public void editState() {
         turing.editStateBtn();
     }
 
     @FXML
-    public void deleteState(){
+    public void deleteState() {
         State item = (State) tableRules.getSelectionModel().getSelectedItem();
-        if(item != null) {
+        if (item != null) {
             tableRules.getItems().remove(item);
         }
     }
 
     @FXML
-    public void addRule(){
+    public void addRule() {
         State item = (State) tableRules.getSelectionModel().getSelectedItem();
         turing.addRuleBtn(item.getName());
     }
 
     @FXML
-    public void deleteRule(){
+    public void deleteRule() {
         State item = (State) tableRules.getSelectionModel().getSelectedItem();
         turing.deleteRuleBtn(item.getName());
     }
 
     @FXML
-    public void checkText(){
-        if(Utils.StringWhitelist(turing.getAlph(), tfTapeEx.getText())){
+    public void checkText() {
+        turing.getActualProject().setTapeEx(tfTapeEx.getText());
+        if (Utils.StringWhitelist(turing.getActualProject().getAlph(), tfTapeEx.getText())) {
             tfTapeEx.setStyle("");
-        }else {
+        } else {
             tfTapeEx.setStyle("-fx-text-inner-color: red");
         }
     }
 
     @FXML
-    public void handleClose(){
+    public void handleClose() {
         System.exit(0);
     }
 
     @FXML
-    public void handleMin(){
+    public void enteredName() {
+        turing.getActualProject().setName(tfName.getText());
+        tableProjects.refresh();
+    }
 
+    @FXML
+    public void newProject(){
+        turing.newProject();
+    }
+
+    @FXML
+    public void setActualProject(){
+        try {
+            turing.setActualProject();
+            turing.refreshGUI();
+        }catch (Exception ex){
+
+        }
+
+    }
+
+    public void saveActualProject(){
+        turing.saveActualProject();
     }
 
     public TableView getTableRules() {
@@ -121,15 +154,39 @@ public class MainController {
         return lTapeEx;
     }
 
-    public String getValueName(){
+    public String getValueName() {
         return tfName.getText();
     }
 
-    public String getValueAlph(){
+    public String getValueAlph() {
         return tfAlph.getText();
     }
 
-    public String getValueTapeEx(){
+    public String getValueTapeEx() {
         return tfTapeEx.getText();
+    }
+
+    public TableView getTableProjects() {
+        return tableProjects;
+    }
+
+    public void setTableProjects(TableView tableProjects) {
+        this.tableProjects = tableProjects;
+    }
+
+    public TextField getTfName() {
+        return tfName;
+    }
+
+    public TextField getTfAlph() {
+        return tfAlph;
+    }
+
+    public TextField getTfTapeEx() {
+        return tfTapeEx;
+    }
+
+    public void setTableRules(TableView tableRules) {
+        this.tableRules = tableRules;
     }
 }

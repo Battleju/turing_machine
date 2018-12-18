@@ -23,6 +23,8 @@ public class Machine extends Thread{
         tape = new Tape(tapeEx);
         runScene.render(tape, pointer, dir);
         for (core.State state : states) {
+            System.out.println(initState);
+            System.out.println(state.getName());
             if (state.getName().equals(initState)) {
                 actState = state;
             }
@@ -39,9 +41,7 @@ public class Machine extends Thread{
         try {
             sleep(Math.round(1000 * (1 - runScene.getSpeed())));
             String rule = actState.getMapProperty().get(tape.getValue(pointer));
-            System.out.println("running");
             if(rule.trim().equals("null")){
-                System.out.println("finsihed");
                 runScene.finished();
             }
             List<String> ruleSplitted = Arrays.asList(rule.split(","));

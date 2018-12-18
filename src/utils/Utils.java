@@ -9,7 +9,6 @@ public class Utils {
         ArrayList booleans = new ArrayList();
         for (Character c : text.toCharArray()) {
             for (Character character : alph) {
-                System.out.println(character + "" + c);
                 if (c.equals(character)) {
                     b = true;
                     break;
@@ -26,5 +25,13 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    public static String booleanToString(boolean b){
+        if(b == false){
+            return "false";
+        }else {
+            return "true";
+        }
     }
 }

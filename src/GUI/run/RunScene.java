@@ -44,7 +44,7 @@ public class RunScene {
             runController.setTableRulesCol((TableColumn) rules.getColumns().get(i));
         }
         runController.setTableRulesRow(rules.getItems());
-        machine = new Machine(this, initState, tapeEx, turing.getStates());
+        machine = new Machine(this, initState, tapeEx, turing.getActualProject().getStates());
 
         runController.getTableRules().setRowFactory(tv -> new TableRow<State>() {
             @Override
@@ -52,13 +52,10 @@ public class RunScene {
                 super.updateItem(item, empty) ;
                 if (item == null) {
                     setStyle("");
-                    System.out.println("no item");
                 } else if (item.isActive()) {
                     setStyle("-fx-background-color: #2c84ff;");
-                    System.out.println("found item");
                 } else {
                     setStyle("");
-                    System.out.println("item isnt active");
                 }
             }
         });
@@ -129,12 +126,11 @@ public class RunScene {
         speed = 0.5;
         movedDelta = 0;
         runController.setlFinished("");
-        machine = new Machine(this, initState, tapeEx, turing.getStates());
+        machine = new Machine(this, initState, tapeEx, turing.getActualProject().getStates());
     }
 
     public void finished(){
         runController.setlFinished("finished");
-        System.out.println("finished");
         machine.stop();
     }
 
