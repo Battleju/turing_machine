@@ -26,13 +26,11 @@ public class State {
     public String getSaveString(){
         String save = "-\n";
 
-        save += name.get() + "\n";
+        save += name.get();
 
         for (Character key : mapProperty.keySet()) {
-            save += "" + key + "-" + mapProperty.get(key) + "\n";
+            save += "\n" + key + "-" + mapProperty.get(key) ;
         }
-
-        save += Utils.booleanToString(active);
         return save;
     }
 

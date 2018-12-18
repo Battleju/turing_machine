@@ -30,11 +30,16 @@ public class Project {
 
     public void save(){
         String fileName = name + ".tmsSAV";
-        String path = "saves/";
+        String path = "./../saves/";
         PrintWriter pWriter = null;
         try
         {
-            pWriter = new PrintWriter(new BufferedWriter(new FileWriter(path + fileName)));
+            try {
+                pWriter = new PrintWriter(new BufferedWriter(new FileWriter(path + fileName)));
+            }catch (FileNotFoundException ex){
+                pWriter = new PrintWriter(new BufferedWriter(new FileWriter("saves/" + fileName)));
+            }
+
             pWriter.println(name);
             pWriter.println(initState);
             pWriter.println(tapeEx);

@@ -102,7 +102,9 @@ public class MainScene extends Application {
         });
 
         SAVLoader savLoader = new SAVLoader();
-
+        projects = FXCollections.observableArrayList(savLoader.getProjects());
+        mainWindowController.getTableProjects().setItems(projects);
+        mainWindowController.getTableProjects().refresh();
     }
 
     public void refreshGUI(){
@@ -260,6 +262,7 @@ public class MainScene extends Application {
         }
         refreshCBInitState();
         getActualProject().setRules(mainWindowController.getTableRules());
+        refreshGUI();
         //getActualProject().getRules().setItems(getActualProject().getStates());
     }
 

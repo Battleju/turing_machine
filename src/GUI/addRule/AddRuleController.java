@@ -46,7 +46,7 @@ public class AddRuleController {
 
     @FXML
     public void actionL(){
-        bL.setStyle("-fx-background-color: #0078ff");
+        bL.setStyle("-fx-background-color: #0077ff");
         bH.setStyle(null);
         bR.setStyle(null);
         tapeMovement = tape.L;
@@ -54,7 +54,7 @@ public class AddRuleController {
 
     @FXML
     public void actionH(){
-        bH.setStyle("-fx-background-color: #0078ff");
+        bH.setStyle("-fx-background-color: #0077ff");
         bL.setStyle(null);
         bR.setStyle(null);
         tapeMovement = tape.H;
@@ -62,7 +62,7 @@ public class AddRuleController {
 
     @FXML
     public void actionR(){
-        bR.setStyle("-fx-background-color: #0078ff");
+        bR.setStyle("-fx-background-color: #0077ff");
         bH.setStyle(null);
         bL.setStyle(null);
         tapeMovement = tape.R;

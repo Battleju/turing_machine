@@ -30,6 +30,10 @@ import javafx.scene.control.*;
     @FXML private TextField ta13;
     @FXML private TextField ta14;
     @FXML private TextField ta15;
+    @FXML private TextField ta16;
+    @FXML private TextField ta17;
+    @FXML private TextField ta18;
+    @FXML private TextField ta19;
 
     //other
     @FXML private TableView tableRules;
@@ -120,6 +124,18 @@ import javafx.scene.control.*;
             case 15:
                 ta15.setText(" " + text);
                 break;
+            case 16:
+                ta16.setText(" " + text);
+                break;
+            case 17:
+                ta17.setText(" " + text);
+                break;
+            case 18:
+                ta18.setText(" " + text);
+                break;
+            case 19:
+                ta19.setText(" " + text);
+                break;
         }
     }
 
@@ -140,54 +156,70 @@ import javafx.scene.control.*;
         ta13.setStyle(null);
         ta14.setStyle(null);
         ta15.setStyle(null);
+        ta16.setStyle(null);
+        ta17.setStyle(null);
+        ta18.setStyle(null);
+        ta19.setStyle(null);
         switch (index){
             case 0:
-                ta0.setStyle("-fx-background-color: #2c84ff");
+                ta0.setStyle("-fx-background-color: #0077ff");
                 break;
             case 1:
-                ta1.setStyle("-fx-background-color: #2c84ff");
+                ta1.setStyle("-fx-background-color: #0077ff");
                 break;
             case 2:
-                ta2.setStyle("-fx-background-color: #2c84ff");
+                ta2.setStyle("-fx-background-color: #0077ff");
                 break;
             case 3:
-                ta3.setStyle("-fx-background-color: #2c84ff");
+                ta3.setStyle("-fx-background-color: #0077ff");
                 break;
             case 4:
-                ta4.setStyle("-fx-background-color: #2c84ff");
+                ta4.setStyle("-fx-background-color: #0077ff");
                 break;
             case 5:
-                ta5.setStyle("-fx-background-color: #2c84ff");
+                ta5.setStyle("-fx-background-color: #0077ff");
                 break;
             case 6:
-                ta6.setStyle("-fx-background-color: #2c84ff");
+                ta6.setStyle("-fx-background-color: #0077ff");
                 break;
             case 7:
-                ta7.setStyle("-fx-background-color: #2c84ff");
+                ta7.setStyle("-fx-background-color: #0077ff");
                 break;
             case 8:
-                ta8.setStyle("-fx-background-color: #2c84ff");
+                ta8.setStyle("-fx-background-color: #0077ff");
                 break;
             case 9:
-                ta9.setStyle("-fx-background-color: #2c84ff");
+                ta9.setStyle("-fx-background-color: #0077ff");
                 break;
             case 10:
-                ta10.setStyle("-fx-background-color: #2c84ff");
+                ta10.setStyle("-fx-background-color: #0077ff");
                 break;
             case 11:
-                ta11.setStyle("-fx-background-color: #2c84ff");
+                ta11.setStyle("-fx-background-color: #0077ff");
                 break;
             case 12:
-                ta12.setStyle("-fx-background-color: #2c84ff");
+                ta12.setStyle("-fx-background-color: #0077ff");
                 break;
             case 13:
-                ta13.setStyle("-fx-background-color: #2c84ff");
+                ta13.setStyle("-fx-background-color: #0077ff");
                 break;
             case 14:
-                ta14.setStyle("-fx-background-color: #2c84ff");
+                ta14.setStyle("-fx-background-color: #0077ff");
                 break;
             case 15:
-                ta15.setStyle("-fx-background-color: #2c84ff");
+                ta15.setStyle("-fx-background-color: #0077ff");
+                break;
+            case 16:
+                ta15.setStyle("-fx-background-color: #0077ff");
+                break;
+            case 17:
+                ta15.setStyle("-fx-background-color: #0077ff");
+                break;
+            case 18:
+                ta15.setStyle("-fx-background-color: #0077ff");
+                break;
+            case 19:
+                ta15.setStyle("-fx-background-color: #0077ff");
                 break;
         }
     }

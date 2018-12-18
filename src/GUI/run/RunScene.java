@@ -53,7 +53,7 @@ public class RunScene {
                 if (item == null) {
                     setStyle("");
                 } else if (item.isActive()) {
-                    setStyle("-fx-background-color: #2c84ff;");
+                    setStyle("-fx-background-color: #0077ff;");
                 } else {
                     setStyle("");
                 }
@@ -94,15 +94,15 @@ public class RunScene {
     public void render(Tape tape, int pointer, Direction dir){
         int count = 0;
         if(dir == Direction.LEFT){
-            if(movedDelta >= -3){
+            if(movedDelta >= -4){
                 movedDelta--;
             }
         }else if(dir == Direction.RIGHT){
-            if(movedDelta <= 3){
+            if(movedDelta <= 4){
                 movedDelta++;
             }
         }
-        for(int i = pointer - (7 + movedDelta); i <= pointer + (8 + movedDelta); i++){
+        for(int i = pointer - (10 + movedDelta); i <= pointer + (10 + movedDelta); i++){
             if(i == pointer){
                 runController.setTaPointer(count);
             }

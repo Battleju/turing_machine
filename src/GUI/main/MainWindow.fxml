@@ -26,7 +26,7 @@
                   <Button layoutX="925.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" text="delete rule" />
                   <Button layoutX="725.0" layoutY="560.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" text="add/edit rule" />
                   <Button layoutX="975.0" layoutY="515.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="100.0" text="delete state" />
-                  <Button fx:id="bRun" layoutX="250.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRun" text="Run" textFill="#006b02">
+                  <Button fx:id="bRun" layoutX="250.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRun" text="Run" textFill="#0077ff">
                      <font>
                         <Font name="System Bold Italic" size="32.0" />
                      </font>

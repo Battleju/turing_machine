@@ -1,5 +1,8 @@
 package utils;
 
+import turingExceptions.TuringParseStringBooleanException;
+import turingExceptions.TuringWrongExtendParameterException;
+
 import java.util.ArrayList;
 
 public class Utils {
@@ -30,8 +33,24 @@ public class Utils {
     public static String booleanToString(boolean b){
         if(b == false){
             return "false";
-        }else {
+        }else{
             return "true";
         }
     }
+
+    public static boolean stringToBoolean(String s){
+        if(s.equals("true")){
+            return true;
+        }else if(s.equals("false")){
+            return false;
+        }else {
+            try {
+                throw new TuringParseStringBooleanException();
+            } catch (TuringParseStringBooleanException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
+
 }
