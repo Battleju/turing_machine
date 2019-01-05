@@ -65,8 +65,20 @@
                       <Menu mnemonicParsing="false" text="File">
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#newProject" text="New Project" />
-                              <MenuItem mnemonicParsing="false" text="Import Project" />
+                              <Menu mnemonicParsing="false" text="Import Project">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Export Project">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#exportAsSAV" text="as tmsSAV" />
+                                  <MenuItem mnemonicParsing="false" text="as Textfile" />
+                                </items>
+                              </Menu>
                               <MenuItem mnemonicParsing="false" onAction="#saveActualProject" text="Save Project" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveAll" text="Save All" />
+                              <MenuItem mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
                           <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
                         </items>
                       </Menu>

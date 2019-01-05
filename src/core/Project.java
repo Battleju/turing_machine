@@ -68,6 +68,46 @@ public class Project {
         }
     }
 
+    public void saveAt(File file){
+        String fileName = name + ".tmsSAV";
+        String path = "./../saves/";
+        PrintWriter pWriter = null;
+        try
+        {
+            try {
+                pWriter = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+            }catch (FileNotFoundException ex){
+                pWriter = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+            }
+
+            pWriter.println(name);
+            pWriter.println(initState);
+            pWriter.println(tapeEx);
+            String bufferAlph = "";
+            for (int i = 0; i < alph.size(); i++){
+                bufferAlph += "" + alph.get(i);
+            }
+            pWriter.println(bufferAlph);
+            pWriter.println(Utils.booleanToString(active));
+
+            for (int i = 0; i < states.size(); i++){
+                pWriter.println(states.get(i).getSaveString());
+            }
+        }
+        catch (IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
+        finally
+        {
+            if (pWriter != null)
+            {
+                pWriter.flush();
+                pWriter.close();
+            }
+        }
+    }
+
     public ArrayList<Character> getAlph() {
         return alph;
     }

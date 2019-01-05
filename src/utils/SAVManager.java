@@ -16,13 +16,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SAVLoader {
+public class SAVManager {
 
     String path = "./../saves";
     ArrayList<Project> projects;
 
-    public SAVLoader() {
+    public SAVManager() {
         searchDirectory();
+    }
+
+    private File searchDirectory(Project project){
+        projects = new ArrayList<>();
+        File f = new File(path);
+        String[] fileArray = f.list();
+        if(fileArray == null){
+            f = new File("./saves");
+            fileArray = f.list();
+        }
+        try{
+            for(int i = 0; i < fileArray.length; i++){
+                //readData(fileArray[i]);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return f;
     }
 
     private void searchDirectory(){
@@ -152,7 +170,28 @@ public class SAVLoader {
         projects.add(project);
     }
 
+    public void deleteFile(String projectName){
+        File file = new File(path + "/" + projectName + ".tmsSAV");
+        if(file.exists()){
+            file.delete();
+            System.out.println("File deleted");
+        }else {
+            file = new File("./saves" + "/" + projectName + ".tmsSAV");
+            if(file.exists()){
+                file.delete();
+            }else {
+                System.out.println("file not found");
+            }
+        }
+
+    }
+
     public ArrayList<Project> getProjects() {
         return projects;
+    }
+
+    public File getProjectFile(Project project){
+        project.save();
+        return searchDirectory(project);
     }
 }

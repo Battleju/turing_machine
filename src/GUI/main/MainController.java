@@ -112,6 +112,11 @@ public class MainController {
     }
 
     @FXML
+    public void deleteProject(){
+        turing.deleteProject();
+    }
+
+    @FXML
     public void setActualProject(){
         try {
             turing.setActualProject();
@@ -122,8 +127,19 @@ public class MainController {
 
     }
 
+    @FXML
+    public void exportAsSAV(){
+        turing.exportAsSAV();
+    }
+
+    @FXML
     public void saveActualProject(){
         turing.saveActualProject();
+    }
+
+    @FXML
+    public void saveAll(){
+        turing.saveAll();
     }
 
     public TableView getTableRules() {

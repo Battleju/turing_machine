@@ -12,19 +12,24 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import utils.GUIUtils;
-import utils.SAVLoader;
+import utils.SAVManager;
 import utils.Utils;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class MainScene extends Application {
@@ -38,6 +43,7 @@ public class MainScene extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
     private TableView originRules;
+    private SAVManager savManager;
 
     //Initial-----------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -101,8 +107,8 @@ public class MainScene extends Application {
 
         });
 
-        SAVLoader savLoader = new SAVLoader();
-        projects = FXCollections.observableArrayList(savLoader.getProjects());
+        savManager = new SAVManager();
+        projects = FXCollections.observableArrayList(savManager.getProjects());
         mainWindowController.getTableProjects().setItems(projects);
         mainWindowController.getTableProjects().refresh();
     }
@@ -122,9 +128,7 @@ public class MainScene extends Application {
         mainWindowController.getTableRules().refresh();
     }
 
-    public void saveActualProject(){
-        getActualProject().save();
-    }
+
 
     //Edit Table Projects-----------------------------------------------------------------------------------------------
     public void newProject(){
@@ -159,6 +163,33 @@ public class MainScene extends Application {
         refreshGUI();
     }
 
+    public void deleteProject(){
+        savManager.deleteFile(getActualProject().getName());
+        projects.remove(getActualProject());
+    }
+
+    public void saveActualProject(){
+        getActualProject().save();
+    }
+
+    public void saveAll(){
+        for (Project project : projects) {
+            project.save();
+        }
+    }
+
+    public void exportAsSAV(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Project");
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            try {
+                getActualProject().saveAt(file);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
     //Edit Table Rules--------------------------------------------------------------------------------------------------
     private void refreshCBInitState(){
         mainWindowController.getCbInitState().getItems().clear();
