@@ -21,24 +21,20 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="bEditState" layoutX="850.0" layoutY="515.0" mnemonicParsing="false" onAction="#editState" prefWidth="100.0" text="edit state" />
                   <ChoiceBox fx:id="cbInitState" layoutX="400.0" layoutY="300.0" prefWidth="150.0" />
-                  <Button layoutX="925.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" text="delete rule" />
-                  <Button layoutX="725.0" layoutY="560.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" text="add/edit rule" />
-                  <Button layoutX="975.0" layoutY="515.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="100.0" text="delete state" />
                   <Button fx:id="bRun" layoutX="250.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleRun" text="Run" textFill="#0077ff">
                      <font>
                         <Font name="System Bold Italic" size="32.0" />
                      </font>
                   </Button>
-                  <TableView fx:id="tableRules" layoutX="725.0" layoutY="50.0" prefHeight="450.0" prefWidth="350.0" />
-                  <Label fx:id="lHeading" layoutX="300.0" layoutY="50.0" text="Turing Machine Simulator">
+                  <TableView fx:id="tableRules" layoutX="725.0" prefHeight="525.0" prefWidth="375.0" />
+                  <Label fx:id="lHeading" layoutX="250.0" layoutY="50.0" text="Turing Machine Simulator">
                      <font>
                         <Font size="32.0" />
                      </font>
                   </Label>
                   <TextField fx:id="tfTapeEx" layoutX="400.0" layoutY="350.0" onKeyReleased="#checkText" />
-                  <TextField fx:id="tfAlph" layoutX="400.0" layoutY="250.0" onAction="#setValueAlph" onKeyReleased="#setValueAlph" />
+                  <TextField fx:id="tfAlph" layoutX="400.0" layoutY="250.0" onAction="#setValueAlph" onInputMethodTextChanged="#setValueAlph" onKeyPressed="#setValueAlph" onKeyReleased="#setValueAlph" />
                   <Label fx:id="lTapeEx" layoutX="250.0" layoutY="350.0" text="tape expression">
                      <font>
                         <Font size="16.0" />
@@ -49,7 +45,6 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tfName" layoutX="400.0" layoutY="200.0" onKeyReleased="#enteredName" />
                   <Label fx:id="lName" alignment="CENTER" layoutX="250.0" layoutY="200.0" text="name">
                      <font>
                         <Font size="16.0" />
@@ -60,40 +55,27 @@
                       <TableColumn fx:id="colProjects" maxWidth="1000.0" prefWidth="198.0" text="Projects" />
                     </columns>
                   </TableView>
-                  <MenuBar prefWidth="1100.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="File">
-                        <items>
-                              <MenuItem mnemonicParsing="false" onAction="#newProject" text="New Project" />
-                              <Menu mnemonicParsing="false" text="Import Project">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Export Project">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#exportAsSAV" text="as tmsSAV" />
-                                  <MenuItem mnemonicParsing="false" text="as Textfile" />
-                                </items>
-                              </Menu>
-                              <MenuItem mnemonicParsing="false" onAction="#saveActualProject" text="Save Project" />
-                              <MenuItem mnemonicParsing="false" onAction="#saveAll" text="Save All" />
-                              <MenuItem mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
-                          <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
-                        </items>
-                      </Menu>
-                    </menus>
-                  </MenuBar>
+                  <ToolBar maxHeight="25.0" maxWidth="900.0" minHeight="25.0" prefHeight="25.0" prefWidth="725.0">
+                    <items>
+                      <Button mnemonicParsing="false" onAction="#newProject" text="New Project" />
+                        <MenuButton mnemonicParsing="false" text="Import Project">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#importSAV" text="as tmsSAV" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton mnemonicParsing="false" text="Export Project">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#exportAsSAV" text="as tmsSAV" />
+                            <MenuItem mnemonicParsing="false" onAction="#exportAsTXT" text="as txt file" />
+                          </items>
+                        </MenuButton>
+                        <Button mnemonicParsing="false" onAction="#saveActualProject" text="Save Project" />
+                        <Button mnemonicParsing="false" onAction="#saveAll" text="Save All" />
+                        <Button mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
+                        <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                    </items>
+                  </ToolBar>
+                  <TextField fx:id="tfName" layoutX="400.0" layoutY="200.0" onKeyReleased="#enteredName" />
                </children>
             </Pane>
          </center>
@@ -111,6 +93,10 @@
             </GridPane>
          </left>
       </BorderPane>
-      <Button fx:id="bAddState" layoutX="725.0" layoutY="515.0" mnemonicParsing="false" onAction="#addState" prefWidth="100.0" text="add state" />
+      <Button fx:id="bAddState" layoutX="725.0" layoutY="535.0" mnemonicParsing="false" onAction="#addState" prefWidth="100.0" text="add state" />
+      <Button fx:id="bEditState" layoutX="854.0" layoutY="535.0" mnemonicParsing="false" onAction="#editState" prefWidth="100.0" text="edit state" />
+      <Button layoutX="986.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="100.0" text="delete state" />
+      <Button layoutX="936.0" layoutY="567.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" text="delete rule" />
+      <Button layoutX="725.0" layoutY="567.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" text="add/edit rule" />
    </children>
 </AnchorPane>

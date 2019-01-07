@@ -2,7 +2,7 @@ Test
 state1
 0110
 01#
-true
+false
 -
 state1
 0-state1 , 0 , R

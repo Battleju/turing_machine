@@ -3,6 +3,7 @@ package GUI.main;
 import core.MainScene;
 import core.State;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import utils.Utils;
@@ -122,7 +123,6 @@ public class MainController {
             turing.setActualProject();
             turing.refreshGUI();
         }catch (Exception ex){
-
         }
 
     }
@@ -130,6 +130,16 @@ public class MainController {
     @FXML
     public void exportAsSAV(){
         turing.exportAsSAV();
+    }
+
+    @FXML
+    public void exportAsTXT(){
+        turing.exportAsTXT();
+    }
+
+    @FXML
+    public void importSAV(){
+        turing.importSAV();
     }
 
     @FXML

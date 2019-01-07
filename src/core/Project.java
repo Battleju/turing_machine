@@ -75,9 +75,9 @@ public class Project {
         try
         {
             try {
-                pWriter = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+                pWriter = new PrintWriter(file);
             }catch (FileNotFoundException ex){
-                pWriter = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+                pWriter = new PrintWriter(file);
             }
 
             pWriter.println(name);

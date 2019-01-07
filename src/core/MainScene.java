@@ -1,9 +1,15 @@
+/*
+Final to do list:
+-all textfields -> check even they are empty when confirm
+- secure for no selected Project
+ */
 package core;
 
 import GUI.addRule.AddRuleController;
 import GUI.addState.AddStateController;
 import GUI.deleteRule.DeleteRuleController;
 import GUI.editState.EditStateController;
+import GUI.lodingState.LoadingScene;
 import GUI.main.MainController;
 import GUI.run.RunScene;
 import javafx.application.Application;
@@ -106,11 +112,11 @@ public class MainScene extends Application {
             }
 
         });
-
-        savManager = new SAVManager();
-        projects = FXCollections.observableArrayList(savManager.getProjects());
-        mainWindowController.getTableProjects().setItems(projects);
-        mainWindowController.getTableProjects().refresh();
+        LoadingScene loadingScene = new LoadingScene(this, pane);
+        //savManager = new SAVManager();
+        //projects = FXCollections.observableArrayList(savManager.getProjects());
+        //mainWindowController.getTableProjects().setItems(projects);
+        //mainWindowController.getTableProjects().refresh();
     }
 
     public void refreshGUI(){
@@ -181,6 +187,7 @@ public class MainScene extends Application {
     public void exportAsSAV(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Project");
+        fileChooser.getExtensionFilters().add( new FileChooser.ExtensionFilter("Turing Machine Stimulator SAV files (*.tmsSAV)", "*.tmsSAV"));
         File file = fileChooser.showSaveDialog(primaryStage);
         if (file != null) {
             try {
@@ -190,6 +197,36 @@ public class MainScene extends Application {
             }
         }
     }
+
+    public void exportAsTXT(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Project");
+        fileChooser.getExtensionFilters().add( new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));
+        File file = fileChooser.showSaveDialog(primaryStage);
+        if (file != null) {
+            try {
+                getActualProject().saveAt(file);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public void importSAV(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Project");
+        fileChooser.getExtensionFilters().add( new FileChooser.ExtensionFilter("Turing Machine Stimulator SAV files (*.tmsSAV)", "*.tmsSAV"));
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                savManager.readData(file);
+                projects.add(savManager.getProjects().get(savManager.getProjects().size() - 1));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
     //Edit Table Rules--------------------------------------------------------------------------------------------------
     private void refreshCBInitState(){
         mainWindowController.getCbInitState().getItems().clear();
@@ -419,6 +456,14 @@ public class MainScene extends Application {
         return null;
     }
 
+    public void setSavManager(SAVManager savManager) {
+        this.savManager = savManager;
+    }
+
+    public void setProjects(ObservableList<Project> projects) {
+        this.projects = projects;
+    }
+
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -437,5 +482,9 @@ public class MainScene extends Application {
 
     public void setyOffset(double yOffset) {
         this.yOffset = yOffset;
+    }
+
+    public MainController getMainWindowController() {
+        return mainWindowController;
     }
 }

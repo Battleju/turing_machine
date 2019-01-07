@@ -118,6 +118,63 @@ public class SAVManager {
         }
     }
 
+    public void readData(File file){
+        try {
+
+            FileReader fr = null;
+            try {
+                fr = new FileReader(file);
+            } catch (FileNotFoundException ex){
+                ex.printStackTrace();
+            }
+
+            BufferedReader br = new BufferedReader(fr);
+
+            String projectName = br.readLine();
+            String initProject = br.readLine();
+            String tapeEx = br.readLine();
+            String alph = br.readLine();
+            String active = br.readLine();
+
+            ArrayList<ArrayList<String>> states = new ArrayList<>();
+            boolean reading = true;
+            while (reading){
+                String readLine = br.readLine();
+                if(readLine == null){
+                    break;
+                }else if(readLine.trim().equals("-")){
+                    states.add(new ArrayList<>());
+                }else {
+                    states.get(states.size() - 1).add(readLine);
+                }
+            }
+            System.out.println(projectName);
+            System.out.println(initProject);
+            System.out.println(tapeEx);
+            System.out.println(alph);
+            System.out.println(active);
+            for (int i = 0; i < states.size(); i++){
+                for (int j = 0; j < states.get(i).size(); j++){
+                    if(states.get(i).get(j).trim().equals("")){
+                        states.get(i).remove(j);
+                    }
+                }
+            }
+            for (int i = 0; i < states.size(); i++){
+                for (int j = 0; j < states.get(i).size(); j++){
+                    System.out.println(states.get(i).get(j));
+                }
+            }
+            br.close();
+
+            createProject(projectName, initProject, tapeEx, alph, active, states);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void createProject(String projectName, String initProject, String tapeEx, String alph, String active, ArrayList<ArrayList<String>> statesString){
         Project project = new Project();
         project.setName(projectName);
