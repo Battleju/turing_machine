@@ -9,20 +9,20 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.run.RunController">
    <children>
-      <Label fx:id="lName" layoutX="425.0" layoutY="50.0" text="Run: &lt;Name&gt;">
+      <Label fx:id="lName" layoutX="425.0" layoutY="39.0" text="Run: &lt;Name&gt;">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <TableView fx:id="tableRules" layoutX="50.0" layoutY="250.0" prefHeight="300.0" prefWidth="350.0" />
-      <Button layoutX="750.0" layoutY="526.0" mnemonicParsing="false" onAction="#actionStartPause" prefWidth="100.0" text="start/pause" />
-      <Button layoutX="550.0" layoutY="526.0" mnemonicParsing="false" onAction="#nextStep" prefWidth="100.0" text="next Step" />
-      <Button layoutX="650.0" layoutY="526.0" mnemonicParsing="false" onAction="#nextState" prefWidth="100.0" text="next State" />
-      <Button layoutX="850.0" layoutY="526.0" mnemonicParsing="false" onAction="#reset" prefWidth="100.0" text="reset" />
-      <Slider fx:id="slSpeed" layoutX="550.0" layoutY="473.0" majorTickUnit="50.0" min="1.0" minorTickCount="5" onMouseReleased="#setSpeed" prefHeight="14.0" prefWidth="400.0" showTickMarks="true" value="50.0" />
-      <Label layoutX="550.0" layoutY="456.0" text="slow" />
-      <Label layoutX="930.0" layoutY="456.0" text="fast" />
-      <Button layoutX="24.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBack" text="&lt;" />
+      <TableView fx:id="tableRules" layoutX="14.0" layoutY="236.0" prefHeight="350.0" prefWidth="600.0" />
+      <Button layoutX="930.0" layoutY="445.0" mnemonicParsing="false" onAction="#actionStartPause" prefWidth="120.0" stylesheets="@../../css/DefaultButton.css" text="start/pause" />
+      <Button layoutX="650.0" layoutY="445.0" mnemonicParsing="false" onAction="#nextStep" prefWidth="120.0" stylesheets="@../../css/DefaultButton.css" text="next Step" />
+      <Button layoutX="650.0" layoutY="484.0" mnemonicParsing="false" onAction="#nextState" prefWidth="120.0" stylesheets="@../../css/DefaultButton.css" text="next State" />
+      <Button layoutX="930.0" layoutY="484.0" mnemonicParsing="false" onAction="#reset" prefWidth="120.0" stylesheets="@../../css/DefaultButton.css" text="reset" />
+      <Slider fx:id="slSpeed" layoutX="650.0" layoutY="555.0" majorTickUnit="50.0" min="1.0" minorTickCount="5" onMouseReleased="#setSpeed" prefHeight="14.0" prefWidth="400.0" showTickMarks="true" value="50.0" />
+      <Label layoutX="650.0" layoutY="538.0" text="slow" />
+      <Label layoutX="1025.0" layoutY="538.0" text="fast" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;" />
       <TextField fx:id="ta0" layoutX="50.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -103,7 +103,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <Label fx:id="lFinished" layoutX="669.0" layoutY="257.0">
+      <Label fx:id="lFinished" layoutX="874.0" layoutY="268.0">
          <font>
             <Font name="System Italic" size="22.0" />
          </font>

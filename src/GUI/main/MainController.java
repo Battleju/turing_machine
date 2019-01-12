@@ -21,6 +21,8 @@ public class MainController {
     private Label lInitState;
     @FXML
     private Label lTapeEx;
+    @FXML
+    private Label lWarning;
 
     //TextFields
     @FXML
@@ -41,6 +43,11 @@ public class MainController {
     private ChoiceBox cbInitState;
     @FXML
     private AnchorPane pane;
+
+
+    public void setlWarningVisibility(boolean bol){
+        lWarning.setVisible(bol);
+    }
 
     public void setTuring(MainScene turing) {
         this.turing = turing;

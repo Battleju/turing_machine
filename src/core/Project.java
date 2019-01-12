@@ -18,6 +18,13 @@ public class Project {
     private final ObservableList<State> states = FXCollections.observableArrayList(new State("state1"));
     private boolean active;
     private TableView rules;
+    private boolean saved;
+
+    private ArrayList<Character> alphOld;
+    private String nameOld;
+    private String initStateOld;
+    private String tapeExOld;
+    private final ObservableList<State> statesOld;
 
     public Project() {
         active = false;
@@ -26,9 +33,18 @@ public class Project {
         name = "new project";
         initState = "";
         tapeEx = "#";
+        saved = false;
+
+        alphOld = alph;
+        nameOld = name;
+        initStateOld = initState;
+        tapeExOld = tapeEx;
+        statesOld = states;
     }
 
     public void save(){
+        saved = true;
+        System.out.println(saved);
         String fileName = name + ".tmsSAV";
         String path = "./../saves/";
         PrintWriter pWriter = null;
@@ -113,7 +129,13 @@ public class Project {
     }
 
     public void setAlph(ArrayList<Character> alph) {
+        alphOld = this.alph;
         this.alph = alph;
+        System.out.println(alphOld.size() + " " + alph.size());
+        if(alphOld.size() - 1 != (alph.size())){
+            saved = false;
+        }
+        System.out.println(saved);
     }
 
     public String getName() {
@@ -121,7 +143,11 @@ public class Project {
     }
 
     public void setName(String name) {
+        nameOld = this.name;
         this.name = name;
+        if(!name.equals(nameOld)){
+            saved = false;
+        }
     }
 
     public String getInitState() {
@@ -129,7 +155,11 @@ public class Project {
     }
 
     public void setInitState(String initState) {
+        initStateOld = this.initState;
         this.initState = initState;
+        if(!initState.equals(initStateOld)){
+            saved = false;
+        }
     }
 
     public String getTapeEx() {
@@ -137,7 +167,11 @@ public class Project {
     }
 
     public void setTapeEx(String tapeEx) {
+        tapeExOld = this.tapeEx;
         this.tapeEx = tapeEx;
+        if(!tapeEx.equals(tapeExOld)){
+            saved = false;
+        }
     }
 
     public ObservableList<State> getStates() {
@@ -158,5 +192,13 @@ public class Project {
 
     public void setRules(TableView rules) {
         this.rules = rules;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
     }
 }

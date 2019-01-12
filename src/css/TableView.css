@@ -1,0 +1,15 @@
+.table-view .column-header-background .label{
+    -fx-background-color: #F0F0F0;
+    -fx-background-insets: 0, 1, 0, 1, 0, 1;
+}
+
+
+.table-view .filler{
+    -fx-background-color: #F0F0F0;
+    -fx-background-insets: 0, 1, 0, 1, 0, 1;
+}
+
+.table-view .column-header {
+    -fx-background-color: #F0F0F0;
+    -fx-background-insets: 0, 1, 0, 1, 0, 1;
+}

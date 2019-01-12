@@ -28,7 +28,11 @@ public class AddStateController {
 
     @FXML
     public void actionOK(){
-        turing.addState(tfName.getText());
-        stage.close();
+        if(!tfName.getText().trim().equals("")){
+            turing.addState(tfName.getText());
+            stage.close();
+        }else {
+            tfName.setStyle("-fx-background-color: #ff5b5b");
+        }
     }
 }

@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="220.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.deleteRule.DeleteRuleController">
    <children>
       <Label layoutX="73.0" layoutY="14.0" text="delete rule">
@@ -31,7 +30,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="47.0" layoutY="175.0" mnemonicParsing="false" onAction="#actionOK" text="OK" />
-      <Button layoutX="129.0" layoutY="175.0" mnemonicParsing="false" onAction="#closeState" text="cancel" />
+      <Button layoutX="47.0" layoutY="175.0" mnemonicParsing="false" onAction="#actionOK" stylesheets="@../../css/DefaultButton.css" text="OK" />
+      <Button layoutX="129.0" layoutY="175.0" mnemonicParsing="false" onAction="#closeState" stylesheets="@../../css/DefaultButton.css" text="cancel" />
    </children>
 </AnchorPane>

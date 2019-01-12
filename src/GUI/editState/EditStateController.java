@@ -28,7 +28,11 @@ public class EditStateController {
 
     @FXML
     public void actionOK(){
-        turing.editState(tfName.getText());
-        stage.close();
+        if(!tfName.getText().trim().equals("")){
+            turing.editState(tfName.getText());
+            stage.close();
+        }else {
+            tfName.setStyle("-fx-background-color: #ff5b5b");
+        }
     }
 }

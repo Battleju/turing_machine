@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -27,7 +28,7 @@
                         <Font name="System Bold Italic" size="32.0" />
                      </font>
                   </Button>
-                  <TableView fx:id="tableRules" layoutX="725.0" prefHeight="525.0" prefWidth="375.0" />
+                  <TableView fx:id="tableRules" layoutX="725.0" prefHeight="525.0" prefWidth="375.0" stylesheets="@../../css/TableView.css" />
                   <Label fx:id="lHeading" layoutX="250.0" layoutY="50.0" text="Turing Machine Simulator">
                      <font>
                         <Font size="32.0" />
@@ -57,25 +58,30 @@
                   </TableView>
                   <ToolBar maxHeight="25.0" maxWidth="900.0" minHeight="25.0" prefHeight="25.0" prefWidth="725.0">
                     <items>
-                      <Button mnemonicParsing="false" onAction="#newProject" text="New Project" />
-                        <MenuButton mnemonicParsing="false" text="Import Project">
+                      <Button mnemonicParsing="false" onAction="#newProject" stylesheets="@../../css/ToolboxButton.css" text="New Project" />
+                        <MenuButton mnemonicParsing="false" stylesheets="@../../css/ToolboxButton.css" text="Import Project">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#importSAV" text="as tmsSAV" />
                           </items>
                         </MenuButton>
-                        <MenuButton mnemonicParsing="false" text="Export Project">
+                        <MenuButton mnemonicParsing="false" stylesheets="@../../css/ToolboxButton.css" text="Export Project">
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#exportAsSAV" text="as tmsSAV" />
                             <MenuItem mnemonicParsing="false" onAction="#exportAsTXT" text="as txt file" />
                           </items>
                         </MenuButton>
-                        <Button mnemonicParsing="false" onAction="#saveActualProject" text="Save Project" />
-                        <Button mnemonicParsing="false" onAction="#saveAll" text="Save All" />
-                        <Button mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
-                        <Button mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                        <Button mnemonicParsing="false" onAction="#saveActualProject" stylesheets="@../../css/ToolboxButton.css" text="Save Project" />
+                        <Button mnemonicParsing="false" onAction="#saveAll" stylesheets="@../../css/ToolboxButton.css" text="Save All" />
+                        <Button mnemonicParsing="false" onAction="#deleteProject" stylesheets="@../../css/ToolboxButton.css" text="Delete Project" />
+                        <Button mnemonicParsing="false" onAction="#handleClose" prefHeight="25.0" stylesheets="@../../css/ToolboxButton.css" text="Close" />
                     </items>
                   </ToolBar>
-                  <TextField fx:id="tfName" layoutX="400.0" layoutY="200.0" onKeyReleased="#enteredName" />
+                  <TextField fx:id="tfName" layoutX="400.0" layoutY="200.0" onKeyReleased="#enteredName" stylesheets="@../../css/TextField.css" />
+                  <Label fx:id="lWarning" layoutX="557.0" layoutY="547.0" text="no project selected" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>
@@ -93,10 +99,10 @@
             </GridPane>
          </left>
       </BorderPane>
-      <Button fx:id="bAddState" layoutX="725.0" layoutY="535.0" mnemonicParsing="false" onAction="#addState" prefWidth="100.0" text="add state" />
-      <Button fx:id="bEditState" layoutX="854.0" layoutY="535.0" mnemonicParsing="false" onAction="#editState" prefWidth="100.0" text="edit state" />
-      <Button layoutX="986.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="100.0" text="delete state" />
-      <Button layoutX="936.0" layoutY="567.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" text="delete rule" />
-      <Button layoutX="725.0" layoutY="567.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" text="add/edit rule" />
+      <Button fx:id="bAddState" layoutX="725.0" layoutY="535.0" maxWidth="122.0" mnemonicParsing="false" onAction="#addState" prefWidth="122.0" stylesheets="@../../css/DefaultButton.css" text="add state" />
+      <Button fx:id="bEditState" layoutX="851.5" layoutY="535.0" maxWidth="122.0" mnemonicParsing="false" onAction="#editState" prefWidth="122.0" stylesheets="@../../css/DefaultButton.css" text="edit state" />
+      <Button layoutX="978.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteState" prefWidth="122.0" stylesheets="@../../css/DefaultButton.css" text="delete state" />
+      <Button layoutX="950.0" layoutY="567.0" mnemonicParsing="false" onAction="#deleteRule" prefWidth="150.0" stylesheets="@../../css/DefaultButton.css" text="delete rule" />
+      <Button layoutX="725.0" layoutY="567.0" mnemonicParsing="false" onAction="#addRule" prefWidth="150.0" stylesheets="@../../css/DefaultButton.css" text="add/edit rule" />
    </children>
 </AnchorPane>

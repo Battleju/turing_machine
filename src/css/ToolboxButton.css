@@ -1,0 +1,14 @@
+.button{
+    -fx-background-insets: 0 0 -2 0,0,2;
+    -fx-background-radius: 1,1,1,1,1;
+    -fx-padding: 4 15 4 15;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+}
+.menu-button{
+    -fx-background-insets: 0 0 -2 0,0,2;
+    -fx-background-radius: 1,1,1,1,1;
+    -fx-padding: 0 7 0 7;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+}

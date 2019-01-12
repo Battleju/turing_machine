@@ -1,7 +1,6 @@
 /*
 Final to do list:
--all textfields -> check even they are empty when confirm
-- secure for no selected Project
+-css styling
  */
 package core;
 
@@ -9,7 +8,7 @@ import GUI.addRule.AddRuleController;
 import GUI.addState.AddStateController;
 import GUI.deleteRule.DeleteRuleController;
 import GUI.editState.EditStateController;
-import GUI.lodingState.LoadingScene;
+import GUI.loadingState.LoadingScene;
 import GUI.main.MainController;
 import GUI.run.RunScene;
 import javafx.application.Application;
@@ -18,24 +17,25 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import utils.GUIUtils;
 import utils.SAVManager;
 import utils.Utils;
 
-import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class MainScene extends Application {
@@ -85,8 +85,7 @@ public class MainScene extends Application {
 
         primaryStage.setScene(new Scene(pane, 1100, 600));
         //primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.show();
-
+        //primaryStage.show();
         initTuring();
     }
 
@@ -113,10 +112,22 @@ public class MainScene extends Application {
 
         });
         LoadingScene loadingScene = new LoadingScene(this, pane);
-        //savManager = new SAVManager();
-        //projects = FXCollections.observableArrayList(savManager.getProjects());
-        //mainWindowController.getTableProjects().setItems(projects);
-        //mainWindowController.getTableProjects().refresh();
+        loadingScene.execute();
+        mainWindowController.getTableProjects().setRowFactory(tv -> new TableRow<Project>() {
+            @Override
+            public void updateItem(Project item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (item == null) {
+                    setStyle("");
+                } else if (item.isSaved()) {
+                    setStyle("-fx-background-color: #0077ff;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+        mainWindowController.getTableProjects().setPlaceholder(new Label("There are no projects"));
+        mainWindowController.getTableRules().setPlaceholder(new Label("There are no rules"));
     }
 
     public void refreshGUI(){
@@ -126,6 +137,8 @@ public class MainScene extends Application {
                 alphString += getActualProject().getAlph().get(i);
             }
         }
+        mainWindowController.getTableProjects().setPlaceholder(new Label("There are no projects"));
+        mainWindowController.getTableRules().setPlaceholder(new Label("There are no rules"));
         mainWindowController.getTfAlph().setText(alphString);
         mainWindowController.getTfName().setText(getActualProject().getName());
         mainWindowController.getTfTapeEx().setText(getActualProject().getTapeEx());
@@ -449,9 +462,11 @@ public class MainScene extends Application {
         if(projects != null){
             for(int i = 0; i < projects.size(); i++){
                 if(projects.get(i).isActive()){
+                    mainWindowController.setlWarningVisibility(false);
                     return  projects.get(i);
                 }
             }
+            mainWindowController.setlWarningVisibility(true);
         }
         return null;
     }

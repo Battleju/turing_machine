@@ -50,7 +50,7 @@
       <Button fx:id="bL" layoutX="199.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionL" text="L" />
       <Button fx:id="bH" layoutX="221.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionH" text="N" />
       <Button fx:id="bR" layoutX="246.0" layoutY="275.0" mnemonicParsing="false" onAction="#actionR" text="R" />
-      <Button layoutX="93.0" layoutY="325.0" mnemonicParsing="false" onAction="#actionOK" text="OK" />
-      <Button layoutX="220.0" layoutY="325.0" mnemonicParsing="false" onAction="#closeStage" text="cancel" />
+      <Button layoutX="46.0" layoutY="326.0" mnemonicParsing="false" onAction="#actionOK" stylesheets="@../../css/DefaultButton.css" text="OK" />
+      <Button layoutX="178.0" layoutY="326.0" mnemonicParsing="false" onAction="#closeStage" stylesheets="@../../css/DefaultButton.css" text="cancel" />
    </children>
 </AnchorPane>
