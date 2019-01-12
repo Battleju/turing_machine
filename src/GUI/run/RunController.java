@@ -162,64 +162,64 @@ import javafx.scene.control.*;
         ta19.setStyle(null);
         switch (index){
             case 0:
-                ta0.setStyle("-fx-background-color: #0077ff");
+                ta0.setStyle("-fx-background-color: #039ed3");
                 break;
             case 1:
-                ta1.setStyle("-fx-background-color: #0077ff");
+                ta1.setStyle("-fx-background-color: #039ed3");
                 break;
             case 2:
-                ta2.setStyle("-fx-background-color: #0077ff");
+                ta2.setStyle("-fx-background-color: #039ed3");
                 break;
             case 3:
-                ta3.setStyle("-fx-background-color: #0077ff");
+                ta3.setStyle("-fx-background-color: #039ed3");
                 break;
             case 4:
-                ta4.setStyle("-fx-background-color: #0077ff");
+                ta4.setStyle("-fx-background-color: #039ed3");
                 break;
             case 5:
-                ta5.setStyle("-fx-background-color: #0077ff");
+                ta5.setStyle("-fx-background-color: #039ed3");
                 break;
             case 6:
-                ta6.setStyle("-fx-background-color: #0077ff");
+                ta6.setStyle("-fx-background-color: #039ed3");
                 break;
             case 7:
-                ta7.setStyle("-fx-background-color: #0077ff");
+                ta7.setStyle("-fx-background-color: #039ed3");
                 break;
             case 8:
-                ta8.setStyle("-fx-background-color: #0077ff");
+                ta8.setStyle("-fx-background-color: #039ed3");
                 break;
             case 9:
-                ta9.setStyle("-fx-background-color: #0077ff");
+                ta9.setStyle("-fx-background-color: #039ed3");
                 break;
             case 10:
-                ta10.setStyle("-fx-background-color: #0077ff");
+                ta10.setStyle("-fx-background-color: #039ed3");
                 break;
             case 11:
-                ta11.setStyle("-fx-background-color: #0077ff");
+                ta11.setStyle("-fx-background-color: #039ed3");
                 break;
             case 12:
-                ta12.setStyle("-fx-background-color: #0077ff");
+                ta12.setStyle("-fx-background-color: #039ed3");
                 break;
             case 13:
-                ta13.setStyle("-fx-background-color: #0077ff");
+                ta13.setStyle("-fx-background-color: #039ed3");
                 break;
             case 14:
-                ta14.setStyle("-fx-background-color: #0077ff");
+                ta14.setStyle("-fx-background-color: #039ed3");
                 break;
             case 15:
-                ta15.setStyle("-fx-background-color: #0077ff");
+                ta15.setStyle("-fx-background-color: #039ed3");
                 break;
             case 16:
-                ta15.setStyle("-fx-background-color: #0077ff");
+                ta15.setStyle("-fx-background-color: #039ed3");
                 break;
             case 17:
-                ta15.setStyle("-fx-background-color: #0077ff");
+                ta15.setStyle("-fx-background-color: #039ed3");
                 break;
             case 18:
-                ta15.setStyle("-fx-background-color: #0077ff");
+                ta15.setStyle("-fx-background-color: #039ed3");
                 break;
             case 19:
-                ta15.setStyle("-fx-background-color: #0077ff");
+                ta15.setStyle("-fx-background-color: #039ed3");
                 break;
         }
     }

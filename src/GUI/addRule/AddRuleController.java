@@ -1,6 +1,6 @@
 package GUI.addRule;
 
-import core.MainScene;
+import GUI.main.MainScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -46,7 +46,7 @@ public class AddRuleController {
 
     @FXML
     public void actionL(){
-        bL.setStyle("-fx-background-color: #0077ff");
+        bL.setStyle("-fx-background-color: #039ed3");
         bH.setStyle(null);
         bR.setStyle(null);
         tapeMovement = tape.L;
@@ -54,7 +54,7 @@ public class AddRuleController {
 
     @FXML
     public void actionH(){
-        bH.setStyle("-fx-background-color: #0077ff");
+        bH.setStyle("-fx-background-color: #039ed3");
         bL.setStyle(null);
         bR.setStyle(null);
         tapeMovement = tape.H;
@@ -62,7 +62,7 @@ public class AddRuleController {
 
     @FXML
     public void actionR(){
-        bR.setStyle("-fx-background-color: #0077ff");
+        bR.setStyle("-fx-background-color: #039ed3");
         bH.setStyle(null);
         bL.setStyle(null);
         tapeMovement = tape.R;

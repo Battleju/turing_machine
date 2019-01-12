@@ -2,15 +2,20 @@
 Final to do list:
 -css styling
  */
-package core;
+package GUI.main;
 
 import GUI.addRule.AddRuleController;
+import GUI.addRule.AddRuleLoader;
+import GUI.addState.AddStateLoader;
 import GUI.addState.AddStateController;
 import GUI.deleteRule.DeleteRuleController;
+import GUI.deleteRule.DeleteRuleLoader;
 import GUI.editState.EditStateController;
+import GUI.editState.EditStateLoader;
 import GUI.loadingState.LoadingScene;
-import GUI.main.MainController;
 import GUI.run.RunScene;
+import core.Project;
+import core.State;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -18,17 +23,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import utils.GUIUtils;
 import utils.SAVManager;
@@ -46,8 +50,6 @@ public class MainScene extends Application {
     private DeleteRuleController deleteRuleController;
     private Stage primaryStage;
     private AnchorPane pane;
-    private double xOffset = 0;
-    private double yOffset = 0;
     private TableView originRules;
     private SAVManager savManager;
 
@@ -59,57 +61,28 @@ public class MainScene extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/main/MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("MainWindow.fxml"));
         pane = loader.load();
         primaryStage.setTitle("Turing Machine");
 
         mainWindowController = loader.getController();
         mainWindowController.setTuring(this);
-
-        /*
-        mainWindowController.getPane().setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        mainWindowController.getPane().setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xOffset);
-                primaryStage.setY(event.getScreenY() - yOffset);
-            }
-        });
-        */
-
+        primaryStage.getIcons().add(new Image(MainScene.class.getResourceAsStream("turingIcon1.gif")));
         primaryStage.setScene(new Scene(pane, 1100, 600));
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.show();
         initTuring();
     }
 
     private void initTuring(){
         originRules = mainWindowController.getTableRules();
-        //projects.get(0).setRules(originRules);
-        //projects.get(0).setActive(true);
-        //mainWindowController.setTableRules(getActualProject().getRules());
-        //setAlph("");
-
         TableColumn tableColumn = (TableColumn) mainWindowController.getTableProjects().getColumns().get(0);
         tableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         mainWindowController.getTableProjects().setItems(projects);
-
-        //mainWindowController.getTableRules().setItems(getActualProject().getStates());
-        //mainWindowController.getCbInitState().setItems(FXCollections.observableArrayList(getActualProject().getStates()));
-
         mainWindowController.getCbInitState().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             try{
                 getActualProject().setInitState(getActualProject().getStates().get(newValue.intValue()).getName());
             }catch (ArrayIndexOutOfBoundsException ignored){
 
             }
-
         });
         LoadingScene loadingScene = new LoadingScene(this, pane);
         loadingScene.execute();
@@ -288,22 +261,17 @@ public class MainScene extends Application {
     }
 
     public void addStateBtn(){
-        try {
-            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/addState/AddStateWindow.fxml"));
-            AnchorPane pane = loader.load();
+            AddStateLoader addStateLoader = new AddStateLoader();
+            AnchorPane pane = addStateLoader.getPane();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add state");
 
-            AddStateController addStateController = loader.getController();
+            AddStateController addStateController = addStateLoader.getAddStateController();
             addStateController.setTuring(this);
             addStateController.setStage(stage);
 
             stage.setScene(new Scene(pane, 350, 150));
             stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void addState(String state){
@@ -314,26 +282,20 @@ public class MainScene extends Application {
         mainWindowController.getTableRules().setItems(getActualProject().getStates());
         refreshCBInitState();
         getActualProject().setRules(mainWindowController.getTableRules());
-        //getActualProject().getRules().setItems(getActualProject().getStates());
     }
 
     public void editStateBtn(){
-        try {
-            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/editState/EditStateWindow.fxml"));
-            AnchorPane pane = loader.load();
+            EditStateLoader editStateLoader = new EditStateLoader();
+            AnchorPane pane = editStateLoader.getPane();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - edit state");
 
-            EditStateController editStateController = loader.getController();
+            EditStateController editStateController = editStateLoader.getAddStateController();
             editStateController.setTuring(this);
             editStateController.setStage(stage);
 
             stage.setScene(new Scene(pane, 350, 150));
             stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void editState(String state){
@@ -344,17 +306,15 @@ public class MainScene extends Application {
         refreshCBInitState();
         getActualProject().setRules(mainWindowController.getTableRules());
         refreshGUI();
-        //getActualProject().getRules().setItems(getActualProject().getStates());
     }
 
     public void addRuleBtn(String actualState){
-        try {
-            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/addRule/AddRuleWindow.fxml"));
-            AnchorPane pane = loader.load();
+            AddRuleLoader addRuleLoader = new AddRuleLoader();
+            AnchorPane pane = addRuleLoader.getPane();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add/edit rule");
 
-            addRuleController = loader.getController();
+            addRuleController = addRuleLoader.getAddRuleController();
             addRuleController.setTuring(this);
             addRuleController.setStage(stage);
             addRuleController.setlState(actualState);
@@ -382,10 +342,6 @@ public class MainScene extends Application {
 
             stage.setScene(new Scene(pane, 350, 375));
             stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void addRule(String actState, char readSymbol, char writeSymbol, String nextState, AddRuleController.tape tapeMove){
@@ -398,17 +354,15 @@ public class MainScene extends Application {
         GUIUtils.autoResizeColumns(mainWindowController.getTableRules());
         mainWindowController.getTableRules().refresh();
         getActualProject().setRules(mainWindowController.getTableRules());
-        //getActualProject().getRules().setItems(getActualProject().getStates());
     }
 
     public void deleteRuleBtn(String actualState){
-        try {
-            FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/deleteRule/DeleteRuleWindow.fxml"));
-            AnchorPane pane = loader.load();
+            DeleteRuleLoader deleteRuleLoader = new DeleteRuleLoader();
+            AnchorPane pane = deleteRuleLoader.getPane();
             Stage stage = new Stage();
             stage.setTitle("Turing Machine - add/edit rule");
 
-            deleteRuleController = loader.getController();
+            deleteRuleController = deleteRuleLoader.getDeleteRuleController();
             deleteRuleController.setTuring(this);
             deleteRuleController.setStage(stage);
             deleteRuleController.setlState(actualState);
@@ -421,10 +375,6 @@ public class MainScene extends Application {
             });
             stage.setScene(new Scene(pane, 250, 220));
             stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void deleteRule(String actState, char readSymbol){
@@ -437,7 +387,6 @@ public class MainScene extends Application {
         GUIUtils.autoResizeColumns(mainWindowController.getTableRules());
         mainWindowController.getTableRules().refresh();
         getActualProject().setRules(mainWindowController.getTableRules());
-        //getActualProject().getRules().setItems(getActualProject().getStates());
     }
 
     //Run Stage---------------------------------------------------------------------------------------------------------
@@ -481,22 +430,6 @@ public class MainScene extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-    public double getxOffset() {
-        return xOffset;
-    }
-
-    public void setxOffset(double xOffset) {
-        this.xOffset = xOffset;
-    }
-
-    public double getyOffset() {
-        return yOffset;
-    }
-
-    public void setyOffset(double yOffset) {
-        this.yOffset = yOffset;
     }
 
     public MainController getMainWindowController() {

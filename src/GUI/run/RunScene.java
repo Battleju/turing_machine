@@ -1,7 +1,7 @@
 package GUI.run;
 
 import core.Machine;
-import core.MainScene;
+import GUI.main.MainScene;
 import core.State;
 import core.Tape;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +35,7 @@ public class RunScene {
         justUntilNextState = false;
         speed = 0.5;
         movedDelta = 0;
-        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/run/RunWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(RunScene.class.getResource("RunWindow.fxml"));
         pane = loader.load();
         runController = loader.getController();
         runController.setlName(name);
@@ -53,7 +53,7 @@ public class RunScene {
                 if (item == null) {
                     setStyle("");
                 } else if (item.isActive()) {
-                    setStyle("-fx-background-color: #0077ff;");
+                    setStyle("-fx-background-color: #039ed3;");
                 } else {
                     setStyle("");
                 }

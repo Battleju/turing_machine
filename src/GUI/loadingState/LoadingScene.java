@@ -1,12 +1,10 @@
 package GUI.loadingState;
 
-import GUI.addState.AddStateController;
-import core.MainScene;
+import GUI.main.MainScene;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,7 +26,7 @@ public class LoadingScene extends SwingWorker {
     public LoadingScene(MainScene turing, AnchorPane origin) {
         this.origin = origin;
         this.turing = turing;
-        FXMLLoader loader = new FXMLLoader(MainScene.class.getResource("../GUI/loadingState/LoadingWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(LoadingScene.class.getResource("LoadingWindow.fxml"));
         AnchorPane pane = null;
         try {
             pane = loader.load();

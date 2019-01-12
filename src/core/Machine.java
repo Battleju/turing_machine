@@ -23,8 +23,6 @@ public class Machine extends Thread{
         tape = new Tape(tapeEx);
         runScene.render(tape, pointer, dir);
         for (core.State state : states) {
-            System.out.println(initState);
-            System.out.println(state.getName());
             if (state.getName().equals(initState)) {
                 actState = state;
             }

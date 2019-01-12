@@ -1,6 +1,6 @@
 package GUI.editState;
 
-import core.MainScene;
+import GUI.main.MainScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

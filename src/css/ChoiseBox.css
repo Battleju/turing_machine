@@ -1,0 +1,14 @@
+.choice-box {
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 0 0 0 0;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 12px;
+}
+
+.choice-box:focused {
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 0 0 0 0;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 12px;
+    -fx-mark-color: #039ed3;
+}

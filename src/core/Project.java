@@ -52,8 +52,15 @@ public class Project {
         {
             try {
                 pWriter = new PrintWriter(new BufferedWriter(new FileWriter(path + fileName)));
-            }catch (FileNotFoundException ex){
-                pWriter = new PrintWriter(new BufferedWriter(new FileWriter("saves/" + fileName)));
+            }catch (FileNotFoundException ex1){
+                try {
+                    pWriter = new PrintWriter(new BufferedWriter(new FileWriter("saves/" + fileName)));
+                }catch (FileNotFoundException ex2){
+                    File f = new File("saves/");
+                    f.mkdir();
+                    save();
+                }
+
             }
 
             pWriter.println(name);
@@ -135,7 +142,6 @@ public class Project {
         if(alphOld.size() - 1 != (alph.size())){
             saved = false;
         }
-        System.out.println(saved);
     }
 
     public String getName() {

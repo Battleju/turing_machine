@@ -1,8 +1,11 @@
 .text-field {
-    -fx-background-color: -fx-text-box-border, -fx-background ;
-    -fx-background-insets: 0, 0 0 1 0 ;
-    -fx-background-radius: 0 ;
+    -fx-background-color: #a9a9a9, a9a9a9, f4f4f4;
+    -fx-background-radius: 1,1,1,1,1;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
 }
+
 .text-field:focused {
-    -fx-background-color: -fx-focus-color, -fx-background ;
+    -fx-background-color: #039ed3, #039ed3, f4f4f4;
+    -fx-background-radius: 1,1,1,1,1;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 1 -1;
 }

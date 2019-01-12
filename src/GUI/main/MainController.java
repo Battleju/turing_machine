@@ -1,6 +1,5 @@
 package GUI.main;
 
-import core.MainScene;
 import core.State;
 import javafx.fxml.FXML;
 

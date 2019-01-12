@@ -1,6 +1,6 @@
 package GUI.deleteRule;
 
-import core.MainScene;
+import GUI.main.MainScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;

@@ -22,7 +22,10 @@
       <Slider fx:id="slSpeed" layoutX="650.0" layoutY="555.0" majorTickUnit="50.0" min="1.0" minorTickCount="5" onMouseReleased="#setSpeed" prefHeight="14.0" prefWidth="400.0" showTickMarks="true" value="50.0" />
       <Label layoutX="650.0" layoutY="538.0" text="slow" />
       <Label layoutX="1025.0" layoutY="538.0" text="fast" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" stylesheets="@../../css/BackButton.css" text="&lt;">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Button>
       <TextField fx:id="ta0" layoutX="50.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />

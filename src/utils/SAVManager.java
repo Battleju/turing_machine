@@ -31,14 +31,6 @@ public class SAVManager {
         String[] fileArray = f.list();
         if(fileArray == null){
             f = new File("./saves");
-            fileArray = f.list();
-        }
-        try{
-            for(int i = 0; i < fileArray.length; i++){
-                //readData(fileArray[i]);
-            }
-        }catch (Exception ex){
-            ex.printStackTrace();
         }
         return f;
     }
@@ -91,21 +83,11 @@ public class SAVManager {
                     states.get(states.size() - 1).add(readLine);
                 }
             }
-            System.out.println(projectName);
-            System.out.println(initProject);
-            System.out.println(tapeEx);
-            System.out.println(alph);
-            System.out.println(active);
             for (int i = 0; i < states.size(); i++){
                 for (int j = 0; j < states.get(i).size(); j++){
                     if(states.get(i).get(j).trim().equals("")){
                         states.get(i).remove(j);
                     }
-                }
-            }
-            for (int i = 0; i < states.size(); i++){
-                for (int j = 0; j < states.get(i).size(); j++){
-                    System.out.println(states.get(i).get(j));
                 }
             }
             br.close();
@@ -148,21 +130,11 @@ public class SAVManager {
                     states.get(states.size() - 1).add(readLine);
                 }
             }
-            System.out.println(projectName);
-            System.out.println(initProject);
-            System.out.println(tapeEx);
-            System.out.println(alph);
-            System.out.println(active);
             for (int i = 0; i < states.size(); i++){
                 for (int j = 0; j < states.get(i).size(); j++){
                     if(states.get(i).get(j).trim().equals("")){
                         states.get(i).remove(j);
                     }
-                }
-            }
-            for (int i = 0; i < states.size(); i++){
-                for (int j = 0; j < states.get(i).size(); j++){
-                    System.out.println(states.get(i).get(j));
                 }
             }
             br.close();
