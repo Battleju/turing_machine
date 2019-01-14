@@ -153,4 +153,8 @@ public class RunScene {
     public void setJustUntilNextState(boolean justUntilNextState) {
         this.justUntilNextState = justUntilNextState;
     }
+
+    public void setRunning(int running) {
+        this.running = running;
+    }
 }

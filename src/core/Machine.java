@@ -12,6 +12,7 @@ public class Machine extends Thread{
     private int pointer;
     private RunScene runScene;
     private core.State actState;
+    private core.State oldState;
     private RunScene.Direction dir;
     private boolean running;
 
@@ -37,6 +38,7 @@ public class Machine extends Thread{
 
     public void runAlgorithm(){
         try {
+            System.out.println("running");
             sleep(Math.round(1000 * (1 - runScene.getSpeed())));
             String rule = actState.getMapProperty().get(tape.getValue(pointer));
             if(rule.trim().equals("null")){
@@ -44,13 +46,15 @@ public class Machine extends Thread{
             }
             List<String> ruleSplitted = Arrays.asList(rule.split(","));
             for (core.State state : states) {
-                if (!actState.getName().equals(ruleSplitted.get(0).trim()) && runScene.isJustUntilNextState()) {
-                    checkAccess();
-                    runScene.setJustUntilNextState(false);
-                }
                 if (state.getName().equals(ruleSplitted.get(0).trim())) {
+                    oldState = actState;
                     actState = state;
                     runScene.setFocusOnTable(actState);
+                    if (!actState.getName().equals(oldState.getName().trim()) && runScene.isJustUntilNextState()) {
+                        runScene.setJustUntilNextState(false);
+                        runScene.setRunning(1);
+                        suspend();
+                    }
                 }
             }
 

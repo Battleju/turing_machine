@@ -26,82 +26,82 @@
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>
-      <TextField fx:id="ta0" layoutX="50.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta0" editable="false" layoutX="50.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta1" layoutX="100.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta1" editable="false" layoutX="100.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta2" layoutX="150.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta2" editable="false" layoutX="150.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta3" layoutX="200.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta3" editable="false" layoutX="200.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta4" layoutX="250.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta4" editable="false" layoutX="250.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta5" layoutX="300.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta5" editable="false" layoutX="300.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta6" layoutX="350.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta6" editable="false" layoutX="350.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta7" layoutX="400.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta7" editable="false" layoutX="400.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta8" layoutX="450.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta8" editable="false" layoutX="450.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta9" layoutX="500.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta9" editable="false" layoutX="500.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta10" layoutX="550.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta10" editable="false" layoutX="550.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta11" layoutX="600.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta11" editable="false" layoutX="600.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta12" layoutX="650.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta12" editable="false" layoutX="650.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta13" layoutX="700.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta13" editable="false" layoutX="700.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta14" layoutX="750.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta14" editable="false" layoutX="750.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta15" layoutX="800.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta15" editable="false" layoutX="800.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -111,22 +111,22 @@
             <Font name="System Italic" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="ta16" layoutX="850.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta16" editable="false" layoutX="850.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta17" layoutX="900.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta17" editable="false" layoutX="900.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta18" layoutX="950.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta18" editable="false" layoutX="950.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="ta19" layoutX="1000.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
+      <TextField fx:id="ta19" editable="false" layoutX="1000.0" layoutY="150.0" prefHeight="50.0" prefWidth="50.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

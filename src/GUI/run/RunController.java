@@ -70,8 +70,8 @@ import javafx.scene.control.*;
 
     @FXML
     public void nextState(){
-        runScene.actionStartPause();
         runScene.setJustUntilNextState(true);
+        runScene.actionStartPause();
     }
 
     public void setTa(int index, char text){

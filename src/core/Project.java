@@ -44,7 +44,6 @@ public class Project {
 
     public void save(){
         saved = true;
-        System.out.println(saved);
         String fileName = name + ".tmsSAV";
         String path = "./../saves/";
         PrintWriter pWriter = null;
